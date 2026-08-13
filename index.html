@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Çiçek Dünyası | Nadir ve Kolay Bulunan Çiçek Rehberi</title>
+  <meta name="description" content="Kolay ve zor bulunan çiçekleri keşfedin, bakım ipuçlarını öğrenin ve arama yaparak istediğiniz çiçeğe anında ulaşın. Palamut Ağacının Hizmetidir.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Glow Background Particles -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- Header Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-icon-wrapper">
+          <span class="logo-emoji">🌺</span>
+        </div>
+        <div class="brand-title">
+          <span class="title-main">Çiçek Dünyası</span>
+          <span class="title-sub">Botanik Rehberi</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="main-nav-links">
+        <button id="nav-btn-catalog" class="nav-nav-btn active">
+          <span>🌸</span> Çiçek Rehberi
+        </button>
+        <button id="nav-btn-contact" class="nav-nav-btn">
+          <span>✉️</span> İletişim
+        </button>
+      </nav>
+
+      <!-- Quick Rarity Badges in Header -->
+      <div class="nav-stats">
+        <div class="stat-pill stat-easy">
+          <span class="stat-dot"></span>
+          <span class="stat-text"><strong id="count-easy">6</strong> Kolay Bulunan</span>
+        </div>
+        <div class="stat-pill stat-rare">
+          <span class="stat-dot"></span>
+          <span class="stat-text"><strong id="count-rare">6</strong> Zor Bulunan (Nadir)</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- VIEW 1: CATALOG PAGE VIEW -->
+  <div id="catalog-page-view">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <span class="hero-badge">✨ Dijital Çiçek Ansiklopedisi</span>
+        <h1 class="hero-title">Doğanın En Özel ve Nadide <span class="gradient-text">Çiçeklerini Keşfedin</span></h1>
+        <p class="hero-subtitle">
+          Evlerde ve bahçelerde kolayca yetiştirilebilen popüler türlerden, dünyada sadece belirli mikroklimada açan çok zor bulunan nadir çiçeklere kadar geniş koleksiyonumuzda gezinin.
+        </p>
+
+        <!-- Main Interactive Search Bar -->
+        <div class="search-box-wrapper">
+          <div class="search-input-group">
+            <span class="search-icon">🔍</span>
+            <input 
+              type="text" 
+              id="flower-search-input" 
+              placeholder="Çiçek adı veya türü yazın (örn: gül, papatya, orkide, Halfeti)..." 
+              autocomplete="off"
+            />
+            <button id="clear-search-btn" class="clear-btn hidden" title="Aramayı Temizle">✕</button>
+          </div>
+
+          <!-- Quick Filter Tags -->
+          <div class="quick-tags">
+            <span class="quick-tag-label">Hızlı Arama:</span>
+            <button class="quick-tag-btn" data-search="gül">🌹 Güller</button>
+            <button class="quick-tag-btn" data-search="orkide">🌸 Orkideler</button>
+            <button class="quick-tag-btn" data-filter="zor">💎 Nadir Türler (Zor Bulunan)</button>
+            <button class="quick-tag-btn" data-filter="kolay">🌱 Kolay Bulunanlar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Controls Toolbar -->
+    <main class="main-content">
+      <div class="content-container">
+        <div class="toolbar-section">
+          <!-- Rarity Tabs -->
+          <div class="filter-tabs" role="tablist">
+            <button class="tab-btn active" data-rarity="all" id="tab-all">
+              <span class="tab-icon">🌿</span> Tüm Çiçekler (<span id="count-all-badge">12</span>)
+            </button>
+            <button class="tab-btn" data-rarity="kolay" id="tab-kolay">
+              <span class="tab-icon">✅</span> Kolay Bulunanlar (<span id="count-kolay-badge">6</span>)
+            </button>
+            <button class="tab-btn" data-rarity="zor" id="tab-zor">
+              <span class="tab-icon">⭐</span> Zor Bulunanlar / Nadir (<span id="count-zor-badge">6</span>)
+            </button>
+          </div>
+
+          <!-- Sort Select -->
+          <div class="sort-wrapper">
+            <label for="sort-select" class="sort-label">Sırala:</label>
+            <select id="sort-select" class="sort-dropdown">
+              <option value="default">Önerilen</option>
+              <option value="name-asc">A'dan Z'ye İsme Göre</option>
+              <option value="rarity-desc">Önce Nadir (Zor Bulunan)</option>
+              <option value="rarity-asc">Önce Yaygın (Kolay Bulunan)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Active Search & Results Counter Feedback -->
+        <div id="search-feedback" class="search-feedback hidden">
+          <span id="search-results-text"></span>
+          <button id="reset-all-filters" class="reset-link">Tüm filtreleri sıfırla</button>
+        </div>
+
+        <!-- Flowers Card Grid -->
+        <div id="flower-grid" class="flower-grid">
+          <!-- Dynamic Cards rendered by JS -->
+        </div>
+
+        <!-- Empty State View -->
+        <div id="empty-state" class="empty-state hidden">
+          <div class="empty-icon">🔍</div>
+          <h3>Aradığınız Çiçek Bulunamadı</h3>
+          <p>Arama kriterlerinize uyan bir çiçek bulunamadı. Lütfen farklı bir kelime yazmayı veya filtreleri kaldırmayı deneyin.</p>
+          <button class="btn btn-primary" onclick="resetFilters()">Tüm Çiçekleri Göster</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- VIEW 2: CONTACT PAGE VIEW -->
+  <div id="contact-page-view" class="contact-page-container hidden">
+    <div class="contact-content-wrapper">
+      <div class="contact-header">
+        <span class="contact-badge">✉️ İletişim & Geri Bildirim</span>
+        <h1 class="contact-title">Bizimle İletişime Geçin</h1>
+        <p class="contact-subtitle">Sorularınız, görüşleriniz veya hata bildirimleriniz için doğrudan e-posta gönderebilirsiniz.</p>
+      </div>
+
+      <!-- Glowing Email Badge (White text, #c071f5 gradient glowing background) -->
+      <div class="contact-email-wrapper">
+        <a 
+          href="mailto:palamutiletisim@gmail.com?subject=Çiçek%20Dünyası%20-%20Hata%20ve%20Öneri%20Bildirimi" 
+          id="btn-copy-open-email" 
+          class="contact-email-badge" 
+          title="Tıkla ve e-posta gönder veya kopyala"
+        >
+          <span class="email-icon">📧</span>
+          <span class="email-address">palamutiletisim@gmail.com</span>
+          <span class="email-action-pill">✉️ Gönder</span>
+        </a>
+      </div>
+
+      <!-- Opaque Purple Box for Palamut Adam Note -->
+      <div class="palamut-opaque-box">
+        <div class="palamut-avatar-header">
+          <span class="palamut-avatar">🌳</span>
+          <span class="palamut-author">Palamut Adam</span>
+        </div>
+        <p class="palamut-note-text">
+          Selamlar ben Palamut Adam bu sitemiz yeni çıktı ve hataları olabilir hataları bildirebilir ve öneride bulunabilirsiniz 😄
+        </p>
+      </div>
+
+      <!-- Interactive Feedback Form -->
+      <div class="contact-form-card">
+        <div class="form-card-header">
+          <h3 class="form-card-title">💬 Mesaj Gönderin</h3>
+          <div class="web3forms-status-note">
+            <span class="status-icon">⚡</span>
+            <span>Web3Forms Destekli • Doğrudan <strong>palamutiletisim@gmail.com</strong> adresine iletilir</span>
+          </div>
+        </div>
+
+        <form id="contact-feedback-form" onsubmit="handleContactSubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="contact-name">Adınız Soyadınız</label>
+              <input type="text" id="contact-name" placeholder="Örn: Ahmet Yılmaz" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">E-posta Adresiniz</label>
+              <input type="email" id="contact-email" placeholder="Örn: ahmet@example.com" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-subject">Konu Türü</label>
+            <select id="contact-subject" class="form-select">
+              <option value="Hata Bildirimi">🐛 Hata Bildirimi</option>
+              <option value="Öneri">💡 Öneri & Fikir</option>
+              <option value="Genel">💬 Genel Soru</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">Mesajınız / Bildiriminiz</label>
+            <textarea id="contact-message" rows="4" placeholder="Sitemiz hakkındaki görüş, öneri veya karşılaştığınız hataları buraya yazabilirsiniz..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-submit-form">
+            <span>🚀</span> Mesajı Gönder
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flower Detail Modal Popup -->
+  <div id="detail-modal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+      <div class="modal-body" id="modal-body-content">
+        <!-- Populated via Javascript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Site Footer (EXACT REQUIREMENT FULFILLED) -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-info">
+          <div class="footer-logo">
+            <span class="logo-emoji">🌺</span>
+            <span class="footer-title">Çiçek Dünyası</span>
+          </div>
+          <p class="footer-desc">
+            Çiçek severler için hazırlanan kolay ve nadir bulunan tüm çiçek türlerinin kapsamlı rehber platformu.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-flex">
+          <div class="footer-service-tag">
+            <span class="leaf-icon">🌳</span>
+            <strong class="highlight-service">Palamut Ağacının HİZMETİDİR</strong>
+          </div>
+          
+          <div class="footer-links-group">
+            <span class="other-sites-label">Diğer Sitelerimiz:</span>
+            <a href="https://linktr.ee/palamut" target="_blank" rel="noopener noreferrer" class="linktree-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.511 5.853l3.962-3.962 2.332 2.331-4.08 4.081 4.545 4.545-2.332 2.332-3.486-3.486v10.306h-3.3v-10.306l-3.486 3.486-2.332-2.332 4.545-4.545-4.08-4.081 2.332-2.331 3.962 3.962v-5.853h3.3v5.853z"/></svg>
+              https://linktr.ee/palamut
+            </a>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          © 2026 Çiçek Dünyası. Tüm hakları saklıdır.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
