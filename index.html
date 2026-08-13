@@ -38,6 +38,9 @@
         <button id="nav-btn-catalog" class="nav-nav-btn active">
           <span>🌸</span> Çiçek Rehberi
         </button>
+        <button id="nav-btn-favorites" class="nav-nav-btn">
+          <span>❤️</span> Favoriler (<span id="nav-fav-count">0</span>)
+        </button>
         <button id="nav-btn-contact" class="nav-nav-btn">
           <span>✉️</span> İletişim
         </button>
@@ -107,6 +110,9 @@
             </button>
             <button class="tab-btn" data-rarity="zor" id="tab-zor">
               <span class="tab-icon">⭐</span> Zor Bulunanlar / Nadir (<span id="count-zor-badge">6</span>)
+            </button>
+            <button class="tab-btn" data-rarity="favorites" id="tab-favorites">
+              <span class="tab-icon">❤️</span> Favorilerim (<span id="count-favorites-badge">0</span>)
             </button>
           </div>
 
@@ -255,6 +261,7 @@
           <div class="footer-service-tag">
             <span class="leaf-icon">🌳</span>
             <strong class="highlight-service">Palamut Ağacının HİZMETİDİR</strong>
+            <span class="footer-version-tag">version 0.0.2</span>
           </div>
 
           <div class="footer-dev-warning">

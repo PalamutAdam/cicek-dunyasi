@@ -227,9 +227,38 @@ const countRareEl = document.getElementById('count-rare');
 const countAllBadge = document.getElementById('count-all-badge');
 const countKolayBadge = document.getElementById('count-kolay-badge');
 const countZorBadge = document.getElementById('count-zor-badge');
+const countFavoritesBadge = document.getElementById('count-favorites-badge');
+const navFavCount = document.getElementById('nav-fav-count');
+
+// Local Storage for Favorites
+function loadFavoritesFromStorage() {
+  try {
+    const saved = localStorage.getItem('cicekDunyasi_favorites');
+    if (saved) {
+      const favIds = JSON.parse(saved);
+      if (Array.isArray(favIds)) {
+        flowersData.forEach(flower => {
+          flower.isFavorite = favIds.includes(flower.id);
+        });
+      }
+    }
+  } catch (e) {
+    console.error('Favorites storage read error', e);
+  }
+}
+
+function saveFavoritesToStorage() {
+  try {
+    const favIds = flowersData.filter(f => f.isFavorite).map(f => f.id);
+    localStorage.setItem('cicekDunyasi_favorites', JSON.stringify(favIds));
+  } catch (e) {
+    console.error('Favorites storage save error', e);
+  }
+}
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
+  loadFavoritesFromStorage();
   updateCounts();
   renderFlowers();
   setupEventListeners();
@@ -239,19 +268,23 @@ document.addEventListener('DOMContentLoaded', () => {
 function updateCounts() {
   const easyCount = flowersData.filter(f => f.rarity === 'kolay').length;
   const rareCount = flowersData.filter(f => f.rarity === 'zor').length;
+  const favCount = flowersData.filter(f => f.isFavorite).length;
 
   if (countEasyEl) countEasyEl.textContent = easyCount;
   if (countRareEl) countRareEl.textContent = rareCount;
   if (countAllBadge) countAllBadge.textContent = flowersData.length;
   if (countKolayBadge) countKolayBadge.textContent = easyCount;
   if (countZorBadge) countZorBadge.textContent = rareCount;
+  if (countFavoritesBadge) countFavoritesBadge.textContent = favCount;
+  if (navFavCount) navFavCount.textContent = favCount;
 }
 
 // Render Flower Cards Grid
 function renderFlowers() {
-  // 1. Filter by Rarity Tab
+  // 1. Filter by Rarity Tab / Favorites
   let filtered = flowersData.filter(flower => {
     if (activeRarityFilter === 'all') return true;
+    if (activeRarityFilter === 'favorites') return flower.isFavorite;
     return flower.rarity === activeRarityFilter;
   });
 
@@ -279,7 +312,8 @@ function renderFlowers() {
   // Update UI search feedback text
   if (searchQuery.trim() !== '' || activeRarityFilter !== 'all') {
     searchFeedback.classList.remove('hidden');
-    let msg = `Görüntülenen: <strong>${filtered.length}</strong> çiçek`;
+    let filterLabel = activeRarityFilter === 'favorites' ? 'Favorilerim' : (activeRarityFilter === 'kolay' ? 'Kolay Bulunanlar' : (activeRarityFilter === 'zor' ? 'Nadir Türler' : 'Tümü'));
+    let msg = `Görüntülenen: <strong>${filtered.length}</strong> çiçek (${filterLabel})`;
     if (searchQuery.trim() !== '') {
       msg += ` ("<em>${escapeHtml(searchQuery)}</em>" araması için)`;
     }
@@ -292,6 +326,22 @@ function renderFlowers() {
   if (filtered.length === 0) {
     flowerGrid.classList.add('hidden');
     emptyState.classList.remove('hidden');
+
+    if (activeRarityFilter === 'favorites') {
+      emptyState.innerHTML = `
+        <div class="empty-icon">❤️</div>
+        <h3>Henüz Favori Çiçek Eklenmedi</h3>
+        <p>Beğendiğiniz çiçeklerin kartlarındaki veya detay sayfasındaki kalp (❤️) butonuna tıklayarak favorilerinize ekleyebilirsiniz.</p>
+        <button class="btn btn-primary" onclick="resetFilters()">Tüm Çiçekleri Göster</button>
+      `;
+    } else {
+      emptyState.innerHTML = `
+        <div class="empty-icon">🔍</div>
+        <h3>Aradığınız Çiçek Bulunamadı</h3>
+        <p>Arama kriterlerinize uyan bir çiçek bulunamadı. Lütfen farklı bir kelime yazmayı veya filtreleri kaldırmayı deneyin.</p>
+        <button class="btn btn-primary" onclick="resetFilters()">Tüm Çiçekleri Göster</button>
+      `;
+    }
   } else {
     flowerGrid.classList.remove('hidden');
     emptyState.classList.add('hidden');
@@ -416,24 +466,56 @@ function setupEventListeners() {
     });
   });
 
-  // Page View Switchers (Çiçek Rehberi vs İletişim)
+  // Page View Switchers (Çiçek Rehberi, Favoriler vs İletişim)
   const navBtnCatalog = document.getElementById('nav-btn-catalog');
   const navBtnContact = document.getElementById('nav-btn-contact');
+  const navBtnFavorites = document.getElementById('nav-btn-favorites');
   const catalogPageView = document.getElementById('catalog-page-view');
   const contactPageView = document.getElementById('contact-page-view');
 
-  if (navBtnCatalog && navBtnContact) {
+  if (navBtnCatalog) {
     navBtnCatalog.addEventListener('click', () => {
       navBtnCatalog.classList.add('active');
-      navBtnContact.classList.remove('active');
+      if (navBtnContact) navBtnContact.classList.remove('active');
+      if (navBtnFavorites) navBtnFavorites.classList.remove('active');
       catalogPageView.classList.remove('hidden');
       contactPageView.classList.add('hidden');
+
+      activeRarityFilter = 'all';
+      tabButtons.forEach(b => {
+        if (b.getAttribute('data-rarity') === 'all') b.classList.add('active');
+        else b.classList.remove('active');
+      });
+
+      renderFlowers();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  }
 
+  if (navBtnFavorites) {
+    navBtnFavorites.addEventListener('click', () => {
+      navBtnFavorites.classList.add('active');
+      if (navBtnCatalog) navBtnCatalog.classList.remove('active');
+      if (navBtnContact) navBtnContact.classList.remove('active');
+      catalogPageView.classList.remove('hidden');
+      contactPageView.classList.add('hidden');
+
+      activeRarityFilter = 'favorites';
+      tabButtons.forEach(b => {
+        if (b.getAttribute('data-rarity') === 'favorites') b.classList.add('active');
+        else b.classList.remove('active');
+      });
+
+      renderFlowers();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  if (navBtnContact) {
     navBtnContact.addEventListener('click', () => {
       navBtnContact.classList.add('active');
-      navBtnCatalog.classList.remove('active');
+      if (navBtnCatalog) navBtnCatalog.classList.remove('active');
+      if (navBtnFavorites) navBtnFavorites.classList.remove('active');
       contactPageView.classList.remove('hidden');
       catalogPageView.classList.add('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -566,6 +648,8 @@ function toggleFavorite(id, event) {
   const flower = flowersData.find(f => f.id === id);
   if (flower) {
     flower.isFavorite = !flower.isFavorite;
+    saveFavoritesToStorage();
+    updateCounts();
     showToast(flower.isFavorite ? `❤️ ${flower.name} favorilere eklendi` : `💔 ${flower.name} favorilerden çıkarıldı`);
     renderFlowers();
   }
