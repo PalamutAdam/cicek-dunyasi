@@ -925,6 +925,25 @@ body {
   text-shadow: 0 0 12px rgba(110, 231, 183, 0.3);
 }
 
+.footer-dev-warning {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 77, 77, 0.12);
+  border: 1px solid rgba(255, 77, 77, 0.4);
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.25);
+}
+
+.dev-warning-text {
+  color: #ff4d4d;
+  font-weight: 800;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 12px rgba(255, 77, 77, 0.5);
+}
+
 .footer-links-group {
   display: flex;
   align-items: center;
