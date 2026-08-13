@@ -198,6 +198,202 @@ const flowersData = [
     fullStory: 'Titan Arum açtığında böcekleri çekmek için etrafa keskin bir koku yayar ve gövde sıcaklığını 37°C dereceye kadar yükseltebilir. Çiçeklenme dönemi dünya genelindeki botanik bahçelerinde canlı yayınlanır ve binlerce ziyaretçi çeker.',
     image: 'https://images.unsplash.com/photo-1534710961216-75c88202f43e?q=80&w=800&auto=format&fit=crop',
     isFavorite: false
+  },
+
+  // --- YENİ EKLENEN KOLAY BULUNAN ÇİÇEKLER ---
+  {
+    id: 'kustum-cicegi',
+    name: 'Küstüm Çiçeği (Dokunma Bana)',
+    latinName: 'Mimosa pudica',
+    rarity: 'kolay',
+    rarityLabel: 'Kolay Bulunan',
+    category: 'Duyarlı Bitki',
+    origin: 'Güney & Orta Amerika',
+    careDifficulty: 'Kolay',
+    sunlight: 'Parlak Dolaylı Işık',
+    watering: 'Toprak Nemli Tutulmalı',
+    description: 'Yapraklarına dokunulduğunda veya hafifçe dokunulduğunda anında kapanıp sarkan, doğanın mucizevi duyarlı bitkisi.',
+    fullStory: 'Küstüm Çiçeği (Mimosa pudica), sismonasti adı verilen özel mekanizma ile dokunmaya karşı tepki verir. Hücre içindeki su basıncının aniden değişmesiyle yapraklarını saniyeler içinde kapatır ve tehlike geçtiğinde tekrar açılır. Çocuklar ve botanik meraklıları için büyüleyici bir deneyim sunar.',
+    image: 'images/kustum_cicegi.png',
+    isFavorite: false
+  },
+  {
+    id: 'lavanta',
+    name: 'Lavanta',
+    latinName: 'Lavandula angustifolia',
+    rarity: 'kolay',
+    rarityLabel: 'Kolay Bulunan',
+    category: 'Tıbbi & Kokulu Bitki',
+    origin: 'Akdeniz Havzası',
+    careDifficulty: 'Çok Kolay',
+    sunlight: 'Bol Güneş Işığı',
+    watering: 'Az Sulama (Kurudukça)',
+    description: 'Mor renkli büyüleyici tarlaları ve huzur veren rahatlatıcı kokusuyla bilinen şifalı aromatik çiçek.',
+    fullStory: 'Lavanta, kuraklığa ve sıcağa son derece dayanıklı bir bitkidir. Yağları aromaterapide uyku ve rahatlama için tercih edilir. Balkon ve bahçelerde arıları ve kelebekleri kendine çekerek doğaya hayat katar.',
+    image: 'https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+  {
+    id: 'ev-orkidesi',
+    name: 'Klasik Beyaz Orkide',
+    latinName: 'Phalaenopsis orchidaceae',
+    rarity: 'kolay',
+    rarityLabel: 'Kolay Bulunan',
+    category: 'Ev Çiçeği',
+    origin: 'Güneydoğu Asya',
+    careDifficulty: 'Orta',
+    sunlight: 'Aydınlık Süzülen Işık',
+    watering: 'Haftada 1 Kez Daldırma',
+    description: 'Ev ve ofis dekorasyonunun en zarif, uzun ömürlü ve popüler indoor çiçek türlerinden biri.',
+    fullStory: 'Phalaenopsis türü orkideler, şeffaf saksılarda köklerinin ışık almasıyla sağlıklı gelişir. Doğru bakıldığında yılda 2-3 kez çiçek açabilir ve çiçekleri aylarca bozulmadan kalabilir.',
+    image: 'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+  {
+    id: 'ortanca',
+    name: 'Mavi Ortanca',
+    latinName: 'Hydrangea macrophylla',
+    rarity: 'kolay',
+    rarityLabel: 'Kolay Bulunan',
+    category: 'Bahçe Çiçeği',
+    origin: 'Japonya & Doğu Asya',
+    careDifficulty: 'Kolay',
+    sunlight: 'Yarı Gölge / Sabah Güneşi',
+    watering: 'Bol Su İster',
+    description: 'Toprağın pH derecesine göre pembeden maviye renk değiştiren muhteşem top top çiçek kurulları.',
+    fullStory: 'Ortancalar tam bir nem tutkunudur. Toprak asidik olduğunda (düşük pH) büyüleyici mavi renkte açarken, alkali topraklarda pembe tonlara dönüşür. Yaz boyunca bahçeleri renklendirir.',
+    image: 'https://images.unsplash.com/photo-1508610048659-a06b669e3321?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+  {
+    id: 'kaktus-cicegi',
+    name: 'Turuncu Kaktüs Çiçeği',
+    latinName: 'Rebutia minuscula',
+    rarity: 'kolay',
+    rarityLabel: 'Kolay Bulunan',
+    category: 'Sukulent & Kaktüs',
+    origin: 'Güney Amerika dağları',
+    careDifficulty: 'Çok Kolay',
+    sunlight: 'Tam Tamına Bol Güneş',
+    watering: '2 Haftada 1 Kez',
+    description: 'Dikenli minik gövdesinin üzerinden taç gibi yükselen canlı turuncu ve kırmızı bahar çiçekleri.',
+    fullStory: 'Rebutia kaktüsleri kışın soğuk ve kuru bir dinlenme dönemi geçirdikten sonra ilkbaharda muazzam bir çiçek patlaması yaşar. Unutkan bitki severler için idealdir.',
+    image: 'https://images.unsplash.com/photo-1509223197845-458d87318791?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+  {
+    id: 'yasemin',
+    name: 'Beyaz Yasemin',
+    latinName: 'Jasminum officinale',
+    rarity: 'kolay',
+    rarityLabel: 'Kolay Bulunan',
+    category: 'Sarmaşık & Kokulu Bitki',
+    origin: 'İran & Himalayalar',
+    careDifficulty: 'Kolay',
+    sunlight: 'Güneşli & Aydınlık',
+    watering: 'Haftada 2 Kez',
+    description: 'Yaz akşamları etrafa yaydığı tatlı ve büyüleyici kokusuyla ünlü tırmanıcı yıldız biçimli beyaz çiçek.',
+    fullStory: 'Yasemin çiçeği özellikle akşam saatlerinde kokusunu en yüksek seviyede salgılar. Çaylara aroma katmakta ve parfümeri sektöründe değerli özyağlar elde etmekte kullanılır.',
+    image: 'https://images.unsplash.com/photo-1588628566587-dbd176de56c4?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+
+  // --- YENİ EKLENEN ZOR BULUNAN / NADİR ÇİÇEKLER ---
+  {
+    id: 'mavi-gul',
+    name: 'Gizemli Mavi Gül',
+    latinName: 'Rosa celeste (Genetik Nadir)',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Nadir Gül',
+    origin: 'Biyoteknoloji Laboratuvarı',
+    careDifficulty: 'Aşırı Uzmanlık',
+    sunlight: 'Hassas Sıcaklık Kontrolü',
+    watering: 'Besleyici Mineral Su',
+    description: 'Doğada mavi pigment geni bulunmadığı için genetik mühendisliği ve özel aşılama ile elde edilen ulaşılması güç lüks gül.',
+    fullStory: 'Güllerde delphinidin adı verilen mavi renk pigmenti doğal olarak bulunmaz. Yıllar süren moleküler biyoloji çalışmaları sonucunda Avustralya ve Japon araştırmacılar tarafından sınırlı sayıda üretilmiştir. İmkansız aşkın simgesidir.',
+    image: 'https://images.unsplash.com/photo-1533616688419-b7a585564566?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+  {
+    id: 'maymun-orkide',
+    name: 'Maymun Yüzlü Orkide',
+    latinName: 'Dracula simia',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Nadir Orkide',
+    origin: 'Ekvador & Peru Bulut Ormanları',
+    careDifficulty: 'Çok Zor (Bulut Ormanı Şartı)',
+    sunlight: 'Yüksek İrtifa Gölgeliği',
+    watering: '%95 Nem & Soğuk Hava',
+    description: 'Çiçek merkezindeki taç yaprak dizilimi birebir sevimli bir maymun yüzünü andıran doğanın şaşırtıcı tasarımı.',
+    fullStory: '2000 metrenin üzerindeki puslu dağ ormanlarında yetişen Dracula simia, olgunlaşmış portakal kokusu yayar. İklim değişikliklerine aşırı duyarlı olduğu için doğal ortamı dışında yaşatılması neredeyse imkansızdır.',
+    image: 'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+  {
+    id: 'kutup-meneksesi',
+    name: 'Kutup / Alp Menekşesi',
+    latinName: 'Silene acaulis',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Alp Bitkisi',
+    origin: 'Arktik & Yüksek Yükselti Alpleri',
+    careDifficulty: 'Aşırı Zor (Donma Şartı)',
+    sunlight: 'Sert Dağ Güneşi',
+    watering: 'Buzlu Erime Suyu',
+    description: 'Kutupların ve dondurucu dağ zirvelerinin kayalıklarında yosun gibi yayılarak açan pembe dayanıklı mucize.',
+    fullStory: 'Silene acaulis yüzlerce yıl yaşayabilen yavaş büyüyen bir halı bitkisidir. Sert rüzgarlardan ve -40°C soğuktan korunmak için kayalara kenetlenir. Tohumlarının çimlenmesi karlı kış mevsimine bağlıdır.',
+    image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+  {
+    id: 'seytan-tirnagi',
+    name: 'Şeytan Tırnağı (Rafflesia)',
+    latinName: 'Rafflesia arnoldii',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Parazit Dev Bitki',
+    origin: 'Borneo & Sumatra Yağmur Ormanları',
+    careDifficulty: 'İmkansız (Kültüre Alınamaz)',
+    sunlight: 'Orman Tabanı Zifiri Gölge',
+    watering: 'Tropikal Yağış',
+    description: 'Yaprağı, kökü ve gövdesi olmayan, 1 metre çapa ve 11 kg ağırlığa ulaşan dünyanın en büyük tekil çiçeği.',
+    fullStory: 'Rafflesia tamamen başka asma köklerinde parazit olarak yaşar. Çiçek açması 9 ay sürer ancak sadece 5-7 gün canlı kalır. Soyu tükenme tehlikesi altında olduğundan uluslararası koruma altındadır.',
+    image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+  {
+    id: 'victoria-nilufer',
+    name: 'Dev Amazon Nilüferi',
+    latinName: 'Victoria amazonica',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Su Çiçeği',
+    origin: 'Amazon Nehir Havzası',
+    careDifficulty: 'Özel Havuz / Botanik Bahçesi',
+    sunlight: 'Sıcak Nemli Güneş',
+    watering: 'Sürekli Derin Su',
+    description: '3 metreye ulaşan yaprakları küçük bir çocuğu taşıyabilen, ilk gece beyaz ikinci gece pembe açan dev su çiçeği.',
+    fullStory: 'Victoria amazonica çiçeği açtığı ilk gece dişi olarak beyaz renktedir ve ısı yayarak kın kanatlı böcekleri içine hapseder. İkinci gece polenlerle kaplanıp pembe renge dönerek böcekleri serbest bırakır.',
+    image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+  {
+    id: 'cikolata-kozmosu',
+    name: 'Çikolata Kozmosu',
+    latinName: 'Cosmos atrosanguineus',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Nadir Kır Çiçeği',
+    origin: 'Meksika',
+    careDifficulty: 'Zor (Klonlama İle Çoğalır)',
+    sunlight: 'Sıcak Güneşli',
+    watering: 'Orta Derece',
+    description: 'Koyu vanilya ve gerçek çikolata kokusu salgılayan, kadife koyu kahve-kırmızı yapraklı soyu doğada tükenmiş nadir tür.',
+    fullStory: 'Çikolata Kozmosu 100 yılı aşkın sürüdür vahşi doğada tükenmiş durumdadır. Günümüzdeki tüm örnekler 1902 yılında laboratuvarda klonlanan tek bir kökten türetilmiştir. Sıcak günlerde etrafa buram buram çikolata kokusu yayar.',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
   }
 ];
 
@@ -256,8 +452,42 @@ function saveFavoritesToStorage() {
   }
 }
 
+// Theme Toggle Logic (Koyu / Açık Tema)
+function initTheme() {
+  const savedTheme = localStorage.getItem('cicekDunyasi_theme');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else {
+    applyTheme('dark');
+  }
+}
+
+function applyTheme(theme) {
+  const themeIcon = document.getElementById('theme-icon');
+  const themeText = document.getElementById('theme-text');
+  
+  if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    if (themeIcon) themeIcon.textContent = '☀️';
+    if (themeText) themeText.textContent = 'Açık Tema';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    if (themeIcon) themeIcon.textContent = '🌙';
+    if (themeText) themeText.textContent = 'Koyu Tema';
+  }
+  localStorage.setItem('cicekDunyasi_theme', theme);
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  applyTheme(newTheme);
+  showToast(newTheme === 'light' ? '☀️ Açık tema aktif edildi' : '🌙 Koyu tema aktif edildi');
+}
+
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   loadFavoritesFromStorage();
   updateCounts();
   renderFlowers();
@@ -438,6 +668,12 @@ function setupEventListeners() {
 
   // Reset all filters button
   resetAllFiltersBtn.addEventListener('click', resetFilters);
+
+  // Theme Toggle Button
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', toggleTheme);
+  }
 
   // Quick tag buttons
   document.querySelectorAll('.quick-tag-btn').forEach(tagBtn => {

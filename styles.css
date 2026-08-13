@@ -38,6 +38,167 @@
   --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ==========================================================================
+   LIGHT THEME OVERRIDES ([data-theme="light"])
+   ========================================================================== */
+[data-theme="light"] {
+  --bg-dark: #f0f7f4;
+  --bg-card: rgba(255, 255, 255, 0.88);
+  --bg-card-hover: rgba(255, 255, 255, 0.98);
+  --border-color: rgba(46, 204, 113, 0.25);
+  --border-glow: rgba(46, 204, 113, 0.4);
+
+  --text-main: #0d2818;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+
+  --badge-easy-bg: rgba(46, 204, 113, 0.2);
+  --badge-easy-border: rgba(46, 204, 113, 0.5);
+  --badge-easy-color: #047857;
+
+  --badge-rare-bg: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(147, 51, 234, 0.15));
+  --badge-rare-border: rgba(217, 119, 6, 0.4);
+  --badge-rare-color: #b45309;
+}
+
+[data-theme="light"] body {
+  background-color: #f0f7f4;
+  color: #0d2818;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(240, 247, 244, 0.92);
+}
+
+[data-theme="light"] .title-main {
+  background: linear-gradient(135deg, #064e3b 40%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .hero-title {
+  color: #064e3b;
+}
+
+[data-theme="light"] #flower-search-input {
+  background: rgba(255, 255, 255, 0.95);
+  color: #0d2818;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="light"] #flower-search-input::placeholder {
+  color: #64748b;
+}
+
+[data-theme="light"] .filter-tabs,
+[data-theme="light"] .main-nav-links,
+[data-theme="light"] .sort-dropdown {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+[data-theme="light"] .sort-dropdown {
+  color: #0d2818;
+}
+
+[data-theme="light"] .quick-tag-btn {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.25);
+  color: #1e293b;
+}
+
+[data-theme="light"] .quick-tag-btn:hover {
+  background: rgba(16, 185, 129, 0.25);
+  color: #064e3b;
+}
+
+[data-theme="light"] .card-title {
+  color: #0d2818;
+}
+
+[data-theme="light"] .modal-card {
+  background: #f4fbf7;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="light"] .modal-flower-title {
+  color: #064e3b;
+}
+
+[data-theme="light"] .modal-grid-info {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+[data-theme="light"] .modal-close-btn {
+  background: rgba(0, 0, 0, 0.12);
+  color: #0d2818;
+}
+
+[data-theme="light"] .site-footer {
+  background: #e2f1ea;
+  border-top-color: rgba(46, 204, 113, 0.35);
+}
+
+[data-theme="light"] .footer-title {
+  color: #064e3b;
+}
+
+[data-theme="light"] .footer-bottom-flex {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+[data-theme="light"] .contact-title {
+  color: #0d2818;
+}
+
+[data-theme="light"] .contact-form-card {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="light"] .form-card-title {
+  color: #0d2818;
+}
+
+[data-theme="light"] .form-group input,
+[data-theme="light"] .form-select,
+[data-theme="light"] .form-group textarea {
+  background: #ffffff;
+  color: #0d2818;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="light"] .footer-version-tag {
+  background: rgba(0, 0, 0, 0.07);
+  color: #334155;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .stat-pill {
+  background: rgba(255, 255, 255, 0.85);
+  color: #0d2818;
+}
+
+.theme-toggle-btn {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  transition: all 0.3s ease !important;
+}
+
+.theme-toggle-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 183, 3, 0.2), rgba(157, 78, 221, 0.2)) !important;
+  border-color: rgba(255, 183, 3, 0.5) !important;
+  transform: translateY(-1px);
+}
+
+[data-theme="light"] .theme-toggle-btn {
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  color: #0d2818 !important;
+}
+
+
 /* Reset & Global */
 *, *::before, *::after {
   box-sizing: border-box !important;
