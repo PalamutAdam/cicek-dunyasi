@@ -82,7 +82,7 @@ const flowersData = [
     watering: 'Haftada 2 Kez',
     description: 'Fırfırlı kenarları ve kendine has tatlı baharatlı kokusuyla buketlerin vazgeçilmez durağan çiçeği.',
     fullStory: 'Karanfil, kesme çiçekçilikte en uzun ömürlü vazoda kalan türlerdendir. Balkon saksılarında çok yıllık olarak kolayca yetiştirilebilir ve soğuk havalara karşı oldukça dirençlidir.',
-    image: 'https://images.unsplash.com/photo-1596707323863-71861ec31168?q=80&w=800&auto=format&fit=crop',
+    image: 'images/karanfil.png',
     isFavorite: false
   },
   {
