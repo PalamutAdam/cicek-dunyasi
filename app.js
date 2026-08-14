@@ -1,17 +1,92 @@
 /* ==========================================================================
-   ÇİÇEK DÜNYASI - JAVASCRIPT APPLICATION LOGIC
+   ÇİÇEK DÜNYASI - JAVASCRIPT APPLICATION LOGIC WITH CATEGORIES SYSTEM
    ========================================================================== */
 
-// Flower Database Array
+// Category Database Array (7 Main Botanical Categories)
+const categoriesData = [
+  {
+    id: 'Güller',
+    name: 'Güller',
+    icon: '🌹',
+    tagline: 'Aşkın, Tutkunun ve Zarafetin Simgesi',
+    description: 'Klasik kırmızı güllerden Şanlıurfa Halfeti\'de yetişen gizemli siyah güle, 5 milyon dolarlık lüks Juliet gülünden genetik biyoteknoloji ürünü mavi güle kadar büyüleyici türler.',
+    gradient: 'linear-gradient(135deg, rgba(255, 77, 109, 0.25), rgba(200, 16, 46, 0.15))',
+    borderColor: 'rgba(255, 77, 109, 0.45)',
+    accentColor: '#ff4d6d'
+  },
+  {
+    id: 'Orkideler',
+    name: 'Orkideler',
+    icon: '🌸',
+    tagline: 'Zarafet ve Gizem Dolu Eksotik Çiçekler',
+    description: 'Evlerimizi süsleyen zarif beyaz orkideden bataklıklarda süzülen yapraksız hayalet orkideye, kadife siyah orkideden sevimli maymun yüzlü nadir türe kadar büyüleyici orkide ailesi.',
+    gradient: 'linear-gradient(135deg, rgba(157, 78, 221, 0.25), rgba(114, 9, 183, 0.15))',
+    borderColor: 'rgba(157, 78, 221, 0.45)',
+    accentColor: '#9d4edd'
+  },
+  {
+    id: 'Kır Çiçekleri',
+    name: 'Kır Çiçekleri',
+    icon: '🌼',
+    tagline: 'Doğanın Özgür, Neşeli ve Doğal Ruhu',
+    description: 'Çayırların masumiyet simgesi papatyası, yüzünü güneşe döndüren dev ayçiçekleri ve etrafa vanilya-çikolata kokusu saçan kadife Çikolata Kozmosu.',
+    gradient: 'linear-gradient(135deg, rgba(255, 183, 3, 0.25), rgba(251, 133, 0, 0.15))',
+    borderColor: 'rgba(255, 183, 3, 0.45)',
+    accentColor: '#ffb703'
+  },
+  {
+    id: 'Bahçe & Balkon Çiçekleri',
+    name: 'Bahçe & Balkon Çiçekleri',
+    icon: '🪴',
+    tagline: 'Evlerimizi ve Bahçelerimizi Renklendiren Canlılar',
+    description: 'Balkonların vazgeçilmezi pembe sardunyalardan, fırfırlı kokulu kırmızı karanfile, toprağın pH derecesine göre renk değiştiren mavi ortancaya ve bahar müjdecisi renkli lalelere.',
+    gradient: 'linear-gradient(135deg, rgba(46, 204, 113, 0.25), rgba(39, 174, 96, 0.15))',
+    borderColor: 'rgba(46, 204, 113, 0.45)',
+    accentColor: '#2ecc71'
+  },
+  {
+    id: 'Aromatik & Şifalı Bitkiler',
+    name: 'Aromatik & Şifalı Bitkiler',
+    icon: '🌿',
+    tagline: 'Huzur Veren Kokular ve Büyüleyici Tepkiler',
+    description: 'Mor tarlaların rahatlatıcı kokusuna sahip lavanta, yaz akşamları tatlı koku yayan beyaz yasemin ve dokunulduğunda yapraklarını saniyeler içinde kapatan mucizevi Küstüm Çiçeği.',
+    gradient: 'linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.15))',
+    borderColor: 'rgba(16, 185, 129, 0.45)',
+    accentColor: '#10b981'
+  },
+  {
+    id: 'Kaktüs & Sukulentler',
+    name: 'Kaktüs & Sukulentler',
+    icon: '🌵',
+    tagline: 'Çölün ve Gecenin Dayanıklı Mucizeleri',
+    description: 'Dikenlerin üzerinden turuncu alev gibi yükselen Rebutia kaktüsünden, sadece gece yarısı açıp şafakta solan paha biçilemeyen Kadupul (Gecenin Kraliçesi) çiçeğine.',
+    gradient: 'linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.15))',
+    borderColor: 'rgba(245, 158, 11, 0.45)',
+    accentColor: '#f59e0b'
+  },
+  {
+    id: 'Egzotik & Nadir Türler',
+    name: 'Egzotik & Nadir Türler',
+    icon: '✨',
+    tagline: 'Dünyanın En Şaşırtıcı ve Dev Botanik Harikaları',
+    description: '7-10 yılda bir kez açan dev Ceset Çiçeği, 1 metre çapındaki parazit Şeytan Tırnağı (Rafflesia), bir çocuğu taşıyabilen Dev Amazon Nilüferi ve dondurucu dağ zirvelerindeki Kutup Menekşesi.',
+    gradient: 'linear-gradient(135deg, rgba(236, 72, 153, 0.25), rgba(168, 85, 247, 0.15))',
+    borderColor: 'rgba(236, 72, 153, 0.45)',
+    accentColor: '#ec4899'
+  }
+];
+
+// Flower Database Array (24 Flowers Standardized across 7 Categories)
 const flowersData = [
-  // --- KOLAY BULUNAN ÇİÇEKLER (Easy to find) ---
+  // --- GÜLLER (4 Çiçek) ---
   {
     id: 'kirmizi-gul',
     name: 'Kırmızı Gül',
     latinName: 'Rosa rubiginosa',
     rarity: 'kolay',
     rarityLabel: 'Kolay Bulunan',
-    category: 'Gül',
+    category: 'Güller',
+    subCategory: 'Gül',
     origin: 'Anadolu & Asya',
     careDifficulty: 'Kolay / Orta',
     sunlight: 'Bol Güneş Işığı',
@@ -22,12 +97,136 @@ const flowersData = [
     isFavorite: false
   },
   {
+    id: 'halfeti-siyah-gul',
+    name: 'Siyah Gül (Halfeti Gülü)',
+    latinName: 'Rosa Halfetiensis',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Güller',
+    subCategory: 'Nadir Gül',
+    origin: 'Halfeti, Şanlıurfa',
+    careDifficulty: 'Çok Zor (Mikroklima Bağımlı)',
+    sunlight: 'Özel Yarı Gölge',
+    watering: 'Hassas Nem Dengesi',
+    description: 'Dünyada sadece Şanlıurfa Halfeti\'nin özel toprak ve mikroklimasında doğal olarak simsiyah açan efsanevi nadide gül.',
+    fullStory: 'Halfeti Gülü, baharda tomurcuk halindeyken koyu siyah renktedir. Başka bir bölgeye ekildiğinde kırmızı renge dönüştüğü için dünyada yalnızca Fırat Nehri kıyısındaki Halfeti ilçesinde tam siyahlığını korur. Dünyanın en nadir floristik değerlerinden biridir.',
+    image: 'images/black_rose.png',
+    isFavorite: false
+  },
+  {
+    id: 'juliet-gulu',
+    name: 'Juliet Gülü',
+    latinName: 'Juliet Rose (David Austin)',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Güller',
+    subCategory: 'Lüks Gül',
+    origin: 'İngiltere',
+    careDifficulty: 'Uzman Bakımı',
+    sunlight: 'Hassas Güneş',
+    watering: 'Özel Besinli Sulama',
+    description: 'Geliştirilmesi 15 yıl süren, 5 milyon dolarlık gül olarak anılan şeftali tonlu katmerli mükemmel lüks gül.',
+    fullStory: 'Ünlü gül yetiştiricisi David Austin tarafında 15 yıllık melezleme çalışmaları sonucu 2006 Chelsea Çiçek Fuarı\'nda sergilenmiştir. Mükemmel dairesel petal dizilimi ve hafif çay kokusuyla dünyanın en pahalı gül çeşididir.',
+    image: 'images/juliet_rose.png',
+    isFavorite: false
+  },
+  {
+    id: 'mavi-gul',
+    name: 'Gizemli Mavi Gül',
+    latinName: 'Rosa celeste (Genetik Nadir)',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Güller',
+    subCategory: 'Nadir Gül',
+    origin: 'Biyoteknoloji Laboratuvarı',
+    careDifficulty: 'Aşırı Uzmanlık',
+    sunlight: 'Hassas Sıcaklık Kontrolü',
+    watering: 'Besleyici Mineral Su',
+    description: 'Doğada mavi pigment geni bulunmadığı için genetik mühendisliği ve özel aşılama ile elde edilen ulaşılması güç lüks gül.',
+    fullStory: 'Güllerde delphinidin adı verilen mavi renk pigmenti doğal olarak bulunmaz. Yıllar süren moleküler biyoloji çalışmaları sonucunda Avustralya ve Japon araştırmacılar tarafından sınırlı sayıda üretilmiştir. İmkansız aşkın simgesidir.',
+    image: 'images/mavi_gul.png',
+    isFavorite: false
+  },
+
+  // --- ORKİDELER (4 Çiçek) ---
+  {
+    id: 'ev-orkidesi',
+    name: 'Klasik Beyaz Orkide',
+    latinName: 'Phalaenopsis orchidaceae',
+    rarity: 'kolay',
+    rarityLabel: 'Kolay Bulunan',
+    category: 'Orkideler',
+    subCategory: 'Ev Çiçeği',
+    origin: 'Güneydoğu Asya',
+    careDifficulty: 'Orta',
+    sunlight: 'Aydınlık Süzülen Işık',
+    watering: 'Haftada 1 Kez Daldırma',
+    description: 'Ev ve ofis dekorasyonunun en zarif, uzun ömürlü ve popüler indoor çiçek türlerinden biri.',
+    fullStory: 'Phalaenopsis türü orkideler, şeffaf saksılarda köklerinin ışık almasıyla sağlıklı gelişir. Doğru bakıldığında yılda 2-3 kez çiçek açabilir ve çiçekleri aylarca bozulmadan kalabilir.',
+    image: 'images/ev_orkidesi.png',
+    isFavorite: false
+  },
+  {
+    id: 'hayalet-orkide',
+    name: 'Hayalet Orkide',
+    latinName: 'Dendrophylax lindenii',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Orkideler',
+    subCategory: 'Eksotik Orkide',
+    origin: 'Florida & Küba Bataklıkları',
+    careDifficulty: 'Aşırı Zor (Uzman Şartları)',
+    sunlight: 'Filtrelenmiş Nemli Işık',
+    watering: '%90 Tropikal Nem',
+    description: 'Yaprakları olmayan, kökleriyle ağaç gövdesine tutunup yılda sadece 1-2 gün havada süzülüyormuş gibi açan koruma altındaki gizemli tür.',
+    fullStory: 'Hayalet Orkide fotosentezi yeşil kökleriyle gerçekleştirir. Çiçek açtığında gövdesi görülmediği için rüzgarda havada asılı duran beyaz bir hayaleti andırır. Tohumlarının çimlenmesi için özel bir mantar türüyle simbiyotik yaşam kurması gerekir, bu yüzden üretilmesi neredeyse imkansızdır.',
+    image: 'images/ghost_orchid.png',
+    isFavorite: false
+  },
+  {
+    id: 'siyah-orkide',
+    name: 'Siyah Orkide (Fredclarkeara)',
+    latinName: 'Fredclarkeara After Dark',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Orkideler',
+    subCategory: 'Koleksiyon Orkide',
+    origin: 'Güney Amerika Hibriti',
+    careDifficulty: 'Zor',
+    sunlight: 'Dolaylı Yüksek Işık',
+    watering: 'Dinlenme Dönemli Sulama',
+    description: 'Yoğun kadife dokulu koyu siyah çiçekleri ve tatlı nane-baharat kokusuyla orkide tutkunlarının rüyası.',
+    fullStory: 'Bitki dünyasında gerçek siyah pigment çok nadirdir. Fredclarkeara hibriti, koyu bordo ve mor tonlarının üst üste katmanlaşmasıyla gözün tamamen siyah algıladığı büyüleyici bir görsel şölen sunar.',
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?q=80&w=800&auto=format&fit=crop',
+    isFavorite: false
+  },
+  {
+    id: 'maymun-orkide',
+    name: 'Maymun Yüzlü Orkide',
+    latinName: 'Dracula simia',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Orkideler',
+    subCategory: 'Nadir Orkide',
+    origin: 'Ekvador & Peru Bulut Ormanları',
+    careDifficulty: 'Çok Zor (Bulut Ormanı Şartı)',
+    sunlight: 'Yüksek İrtifa Gölgeliği',
+    watering: '%95 Nem & Soğuk Hava',
+    description: 'Çiçek merkezindeki taç yaprak dizilimi birebir sevimli bir maymun yüzünü andıran doğanın şaşırtıcı tasarımı.',
+    fullStory: '2000 metrenin üzerindeki puslu dağ ormanlarında yetişen Dracula simia, olgunlaşmış portakal kokusu yayar. İklim değişikliklerine aşırı duyarlı olduğu için doğal ortamı dışında yaşatılması neredeyse imkansızdır.',
+    image: 'images/maymun_orkide.png',
+    isFavorite: false
+  },
+
+  // --- KIR ÇİÇEKLERİ (3 Çiçek) ---
+  {
     id: 'papatya',
     name: 'Papatya',
     latinName: 'Bellis perennis',
     rarity: 'kolay',
     rarityLabel: 'Kolay Bulunan',
-    category: 'Kır Çiçeği',
+    category: 'Kır Çiçekleri',
+    subCategory: 'Kır Çiçeği',
     origin: 'Avrupa & Akdeniz',
     careDifficulty: 'Çok Kolay',
     sunlight: 'Doğrudan Güneş',
@@ -38,28 +237,13 @@ const flowersData = [
     isFavorite: false
   },
   {
-    id: 'lale',
-    name: 'Renkli Lale',
-    latinName: 'Tulipa gesneriana',
-    rarity: 'kolay',
-    rarityLabel: 'Kolay Bulunan',
-    category: 'Soğanlı Bitki',
-    origin: 'Orta Asya & Türkiye',
-    careDifficulty: 'Kolay',
-    sunlight: 'Yarı Gölge / Güneş',
-    watering: 'Haftada 1 Kez',
-    description: 'İlkbaharın gelişini haber veren zarif kadeh biçimli taç yapraklarıyla ünlü soğanlı bahçe çiçeği.',
-    fullStory: 'Osmanlı kültüründe özel bir yere sahip olan Lale, bahar aylarında rengarenk açar. Soğanları sonbaharda dikilir ve kış soğuğunu aldıktan sonra ilkbaharda büyüleyici bir görsele dönüşür.',
-    image: 'images/tulip.png',
-    isFavorite: false
-  },
-  {
     id: 'aycicegi',
     name: 'Ayçiçeği',
     latinName: 'Helianthus annuus',
     rarity: 'kolay',
     rarityLabel: 'Kolay Bulunan',
-    category: 'Kır Çiçeği',
+    category: 'Kır Çiçekleri',
+    subCategory: 'Kır Çiçeği',
     origin: 'Kuzey Amerika',
     careDifficulty: 'Çok Kolay',
     sunlight: 'Tam Güneş (Güneşe Döner)',
@@ -70,12 +254,49 @@ const flowersData = [
     isFavorite: false
   },
   {
+    id: 'cikolata-kozmosu',
+    name: 'Çikolata Kozmosu',
+    latinName: 'Cosmos atrosanguineus',
+    rarity: 'zor',
+    rarityLabel: 'Zor Bulunan (Nadir)',
+    category: 'Kır Çiçekleri',
+    subCategory: 'Nadir Kır Çiçeği',
+    origin: 'Meksika',
+    careDifficulty: 'Zor (Klonlama İle Çoğalır)',
+    sunlight: 'Sıcak Güneşli',
+    watering: 'Orta Derece',
+    description: 'Koyu vanilya ve gerçek çikolata kokusu salgılayan, kadife koyu kahve-kırmızı yapraklı soyu doğada tükenmiş nadir tür.',
+    fullStory: 'Çikolata Kozmosu 100 yılı aşkın sürüdür vahşi doğada tükenmiş durumdadır. Günümüzdeki tüm örnekler 1902 yılında laboratuvarda klonlanan tek bir kökten türetilmiştir. Sıcak günlerde etrafa buram buram çikolata kokusu yayar.',
+    image: 'images/cikolata_kozmosu.png',
+    isFavorite: false
+  },
+
+  // --- BAHÇE & BALKON ÇİÇEKLERİ (4 Çiçek) ---
+  {
+    id: 'lale',
+    name: 'Renkli Lale',
+    latinName: 'Tulipa gesneriana',
+    rarity: 'kolay',
+    rarityLabel: 'Kolay Bulunan',
+    category: 'Bahçe & Balkon Çiçekleri',
+    subCategory: 'Soğanlı Bitki',
+    origin: 'Orta Asya & Türkiye',
+    careDifficulty: 'Kolay',
+    sunlight: 'Yarı Gölge / Güneş',
+    watering: 'Haftada 1 Kez',
+    description: 'İlkbaharın gelişini haber veren zarif kadeh biçimli taç yapraklarıyla ünlü soğanlı bahçe çiçeği.',
+    fullStory: 'Osmanlı kültüründe özel bir yere sahip olan Lale, bahar aylarında rengarenk açar. Soğanları sonbaharda dikilir ve kış soğuğunu aldıktan sonra ilkbaharda büyüleyici bir görsele dönüşür.',
+    image: 'images/tulip.png',
+    isFavorite: false
+  },
+  {
     id: 'karanfil',
     name: 'Kırmızı Karanfil',
     latinName: 'Dianthus caryophyllus',
     rarity: 'kolay',
     rarityLabel: 'Kolay Bulunan',
-    category: 'Bahçe Çiçeği',
+    category: 'Bahçe & Balkon Çiçekleri',
+    subCategory: 'Bahçe Çiçeği',
     origin: 'Akdeniz Bölgesi',
     careDifficulty: 'Kolay',
     sunlight: 'Aydınlık Güneşli',
@@ -91,7 +312,8 @@ const flowersData = [
     latinName: 'Pelargonium hortorum',
     rarity: 'kolay',
     rarityLabel: 'Kolay Bulunan',
-    category: 'Balkon Çiçeği',
+    category: 'Bahçe & Balkon Çiçekleri',
+    subCategory: 'Balkon Çiçeği',
     origin: 'Güney Afrika',
     careDifficulty: 'Çok Kolay',
     sunlight: 'Bol Güneş',
@@ -101,119 +323,39 @@ const flowersData = [
     image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop',
     isFavorite: false
   },
-
-  // --- ZOR BULUNAN / NADİR ÇİÇEKLER (Rare & Hard to find) ---
   {
-    id: 'halfeti-siyah-gul',
-    name: 'Siyah Gül (Halfeti Gülü)',
-    latinName: 'Rosa Halfetiensis',
-    rarity: 'zor',
-    rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Nadir Gül',
-    origin: 'Halfeti, Şanlıurfa',
-    careDifficulty: 'Çok Zor (Mikroklima Bağımlı)',
-    sunlight: 'Özel Yarı Gölge',
-    watering: 'Hassas Nem Dengesi',
-    description: 'Dünyada sadece Şanlıurfa Halfeti\'nin özel toprak ve mikroklimasında doğal olarak simsiyah açan efsanevi nadide gül.',
-    fullStory: 'Halfeti Gülü, baharda tomurcuk halindeyken koyu siyah renktedir. Başka bir bölgeye ekildiğinde kırmızı renge dönüştüğü için dünyada yalnızca Fırat Nehri kıyısındaki Halfeti ilçesinde tam siyahlığını korur. Dünyanın en nadir floristik değerlerinden biridir.',
-    image: 'images/black_rose.png',
-    isFavorite: false
-  },
-  {
-    id: 'hayalet-orkide',
-    name: 'Hayalet Orkide',
-    latinName: 'Dendrophylax lindenii',
-    rarity: 'zor',
-    rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Eksotik Orkide',
-    origin: 'Florida & Küba Bataklıkları',
-    careDifficulty: 'Aşırı Zor (Uman Şartları)',
-    sunlight: 'Filtrelenmiş Nemli Işık',
-    watering: '%90 Tropikal Nem',
-    description: 'Yaprakları olmayan, kökleriyle ağaç gövdesine tutunup yılda sadece 1-2 gün havada süzülüyormuş gibi açan koruma altındaki gizemli tür.',
-    fullStory: 'Hayalet Orkide fotosentezi yeşil kökleriyle gerçekleştirir. Çiçek açtığında gövdesi görülmediği için rüzgarda havada asılı duran beyaz bir hayaleti andırır. Tohumlarının çimlenmesi için özel bir mantar türüyle simbiyotik yaşam kurması gerekir, bu yüzden üretilmesi neredeyse imkansızdır.',
-    image: 'images/ghost_orchid.png',
-    isFavorite: false
-  },
-  {
-    id: 'juliet-gulu',
-    name: 'Juliet Gülü',
-    latinName: 'Juliet Rose (David Austin)',
-    rarity: 'zor',
-    rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Lüks Gül',
-    origin: 'İngiltere',
-    careDifficulty: 'Uzman Bakımı',
-    sunlight: 'Hassas Güneş',
-    watering: 'Özel Besinli Sulama',
-    description: 'Geliştirilmesi 15 yıl süren, 5 milyon dolarlık gül olarak anılan şeftali tonlu katmerli mükemmel lüks gül.',
-    fullStory: 'Ünlü gül yetiştiricisi David Austin tarafında 15 yıllık melezleme çalışmaları sonucu 2006 Chelsea Çiçek Fuarı\'nda sergilenmiştir. Mükemmel dairesel petal dizilimi ve hafif çay kokusuyla dünyanın en pahalı gül çeşididir.',
-    image: 'images/juliet_rose.png',
-    isFavorite: false
-  },
-  {
-    id: 'kadupul-cicegi',
-    name: 'Kadupul Çiçeği (Gecenin Kraliçesi)',
-    latinName: 'Epiphyllum oxypetalum',
-    rarity: 'zor',
-    rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Mistik Kaktüs Çiçeği',
-    origin: 'Sri Lanka',
-    careDifficulty: 'Paha Biçilemez / Özel',
-    sunlight: 'Sadece Gece Yarısı Işıksız',
-    watering: 'Nemli Tropik',
-    description: 'Gece yarısı saatlerinde açıp şafak sökmeden hemen önce solan, dünyada paha biçilemeyen ve ticareti yapılmayan mucizevi çiçek.',
-    fullStory: 'Kadupul çiçeği dalından koparıldığı anda birkaç saat içinde ölür. Bu yüzden açık pazarda fiyatı yoktur; paha biçilemez kabul edilir. Çiçek açtığında etrafa büyüleyici sakinleştirici bir koku yayar.',
-    image: 'images/kadupul.png',
-    isFavorite: false
-  },
-  {
-    id: 'siyah-orkide',
-    name: 'Siyah Orkide (Fredclarkeara)',
-    latinName: 'Fredclarkeara After Dark',
-    rarity: 'zor',
-    rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Koleksiyon Orkide',
-    origin: 'Güney Amerika Hibriti',
-    careDifficulty: 'Zor',
-    sunlight: 'Dolaylı Yüksek Işık',
-    watering: 'Dinlenme Dönemli Sulama',
-    description: 'Yoğun kadife dokulu koyu siyah çiçekleri ve tatlı nane-baharat kokusuyla orkide tutkunlarının rüyası.',
-    fullStory: 'Bitki dünyasında gerçek siyah pigment çok nadirdir. Fredclarkeara hibriti, koyu bordo ve mor tonlarının üst üste katmanlaşmasıyla gözün tamamen siyah algıladığı büyüleyici bir görsel şölen sunar.',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?q=80&w=800&auto=format&fit=crop',
-    isFavorite: false
-  },
-  {
-    id: 'ceset-cicegi',
-    name: 'Ceset Çiçeği (Titan Arum)',
-    latinName: 'Amorphophallus titanum',
-    rarity: 'zor',
-    rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Eksotik Dev Bitki',
-    origin: 'Sumatra Yağmur Ormanları',
-    careDifficulty: 'Sera / Botanik Bahçesi',
-    sunlight: 'Sıcak Tropik Nem',
-    watering: 'Sürekli Yüksek Nem',
-    description: '7 ile 10 yılda yalnızca bir kez 48 saatliğine açan, 3 metre boya ulaşabilen dünyanın en devasa çiçeği.',
-    fullStory: 'Titan Arum açtığında böcekleri çekmek için etrafa keskin bir koku yayar ve gövde sıcaklığını 37°C dereceye kadar yükseltebilir. Çiçeklenme dönemi dünya genelindeki botanik bahçelerinde canlı yayınlanır ve binlerce ziyaretçi çeker.',
-    image: 'https://images.unsplash.com/photo-1534710961216-75c88202f43e?q=80&w=800&auto=format&fit=crop',
+    id: 'ortanca',
+    name: 'Mavi Ortanca',
+    latinName: 'Hydrangea macrophylla',
+    rarity: 'kolay',
+    rarityLabel: 'Kolay Bulunan',
+    category: 'Bahçe & Balkon Çiçekleri',
+    subCategory: 'Bahçe Çiçeği',
+    origin: 'Japonya & Doğu Asya',
+    careDifficulty: 'Kolay',
+    sunlight: 'Yarı Gölge / Sabah Güneşi',
+    watering: 'Bol Su İster',
+    description: 'Toprağın pH derecesine göre pembeden maviye renk değiştiren muhteşem top top çiçek kurulları.',
+    fullStory: 'Ortancalar tam bir nem tutkunudur. Toprak asidik olduğunda (düşük pH) büyüleyici mavi renkte açarken, alkali topraklarda pembe tonlara dönüşür. Yaz boyunca bahçeleri renklendirir.',
+    image: 'images/ortanca.png',
     isFavorite: false
   },
 
-  // --- YENİ EKLENEN KOLAY BULUNAN ÇİÇEKLER ---
+  // --- AROMATİK & ŞİFALI BİTKİLER (3 Çiçek) ---
   {
     id: 'kustum-cicegi',
     name: 'Küstüm Çiçeği (Dokunma Bana)',
     latinName: 'Mimosa pudica',
     rarity: 'kolay',
     rarityLabel: 'Kolay Bulunan',
-    category: 'Duyarlı Bitki',
+    category: 'Aromatik & Şifalı Bitkiler',
+    subCategory: 'Duyarlı Bitki',
     origin: 'Güney & Orta Amerika',
     careDifficulty: 'Kolay',
     sunlight: 'Parlak Dolaylı Işık',
     watering: 'Toprak Nemli Tutulmalı',
     description: 'Yapraklarına dokunulduğunda veya hafifçe dokunulduğunda anında kapanıp sarkan, doğanın mucizevi duyarlı bitkisi.',
-    fullStory: 'Küstüm Çiçeği (Mimosa pudica), sismonasti adı verilen özel mekanizma ile dokunmaya karşı tepki verir. Hücre içindeki su basıncının aniden değişmesiyle yapraklarını saniyeler içinde kapatır ve tehlike geçtiğinde tekrar açılır. Çocuklar ve botanik meraklıları için büyüleyici bir deneyim sunar.',
+    fullStory: 'Küstüm Çiçeği (Mimosa pudica), sismonasti adı verilen özel mekanizma ile dokunmaya karşı tepki verir. Hücre içindeki su basıncının aniden değişmesiyle yapraklarını saniyeler içinde kapatır ve tehlike geçtiğinde tekrar açılır.',
     image: 'images/kustum_cicegi.png',
     isFavorite: false
   },
@@ -223,7 +365,8 @@ const flowersData = [
     latinName: 'Lavandula angustifolia',
     rarity: 'kolay',
     rarityLabel: 'Kolay Bulunan',
-    category: 'Tıbbi & Kokulu Bitki',
+    category: 'Aromatik & Şifalı Bitkiler',
+    subCategory: 'Tıbbi & Kokulu Bitki',
     origin: 'Akdeniz Havzası',
     careDifficulty: 'Çok Kolay',
     sunlight: 'Bol Güneş Işığı',
@@ -234,60 +377,13 @@ const flowersData = [
     isFavorite: false
   },
   {
-    id: 'ev-orkidesi',
-    name: 'Klasik Beyaz Orkide',
-    latinName: 'Phalaenopsis orchidaceae',
-    rarity: 'kolay',
-    rarityLabel: 'Kolay Bulunan',
-    category: 'Ev Çiçeği',
-    origin: 'Güneydoğu Asya',
-    careDifficulty: 'Orta',
-    sunlight: 'Aydınlık Süzülen Işık',
-    watering: 'Haftada 1 Kez Daldırma',
-    description: 'Ev ve ofis dekorasyonunun en zarif, uzun ömürlü ve popüler indoor çiçek türlerinden biri.',
-    fullStory: 'Phalaenopsis türü orkideler, şeffaf saksılarda köklerinin ışık almasıyla sağlıklı gelişir. Doğru bakıldığında yılda 2-3 kez çiçek açabilir ve çiçekleri aylarca bozulmadan kalabilir.',
-    image: 'images/ev_orkidesi.png',
-    isFavorite: false
-  },
-  {
-    id: 'ortanca',
-    name: 'Mavi Ortanca',
-    latinName: 'Hydrangea macrophylla',
-    rarity: 'kolay',
-    rarityLabel: 'Kolay Bulunan',
-    category: 'Bahçe Çiçeği',
-    origin: 'Japonya & Doğu Asya',
-    careDifficulty: 'Kolay',
-    sunlight: 'Yarı Gölge / Sabah Güneşi',
-    watering: 'Bol Su İster',
-    description: 'Toprağın pH derecesine göre pembeden maviye renk değiştiren muhteşem top top çiçek kurulları.',
-    fullStory: 'Ortancalar tam bir nem tutkunudur. Toprak asidik olduğunda (düşük pH) büyüleyici mavi renkte açarken, alkali topraklarda pembe tonlara dönüşür. Yaz boyunca bahçeleri renklendirir.',
-    image: 'images/ortanca.png',
-    isFavorite: false
-  },
-  {
-    id: 'kaktus-cicegi',
-    name: 'Turuncu Kaktüs Çiçeği',
-    latinName: 'Rebutia minuscula',
-    rarity: 'kolay',
-    rarityLabel: 'Kolay Bulunan',
-    category: 'Sukulent & Kaktüs',
-    origin: 'Güney Amerika dağları',
-    careDifficulty: 'Çok Kolay',
-    sunlight: 'Tam Tamına Bol Güneş',
-    watering: '2 Haftada 1 Kez',
-    description: 'Dikenli minik gövdesinin üzerinden taç gibi yükselen canlı turuncu ve kırmızı bahar çiçekleri.',
-    fullStory: 'Rebutia kaktüsleri kışın soğuk ve kuru bir dinlenme dönemi geçirdikten sonra ilkbaharda muazzam bir çiçek patlaması yaşar. Unutkan bitki severler için idealdir.',
-    image: 'images/kaktus_cicegi.png',
-    isFavorite: false
-  },
-  {
     id: 'yasemin',
     name: 'Beyaz Yasemin',
     latinName: 'Jasminum officinale',
     rarity: 'kolay',
     rarityLabel: 'Kolay Bulunan',
-    category: 'Sarmaşık & Kokulu Bitki',
+    category: 'Aromatik & Şifalı Bitkiler',
+    subCategory: 'Sarmaşık & Kokulu Bitki',
     origin: 'İran & Himalayalar',
     careDifficulty: 'Kolay',
     sunlight: 'Güneşli & Aydınlık',
@@ -298,53 +394,58 @@ const flowersData = [
     isFavorite: false
   },
 
-  // --- YENİ EKLENEN ZOR BULUNAN / NADİR ÇİÇEKLER ---
+  // --- KAKTÜS & SUKULENTLER (2 Çiçek) ---
   {
-    id: 'mavi-gul',
-    name: 'Gizemli Mavi Gül',
-    latinName: 'Rosa celeste (Genetik Nadir)',
-    rarity: 'zor',
-    rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Nadir Gül',
-    origin: 'Biyoteknoloji Laboratuvarı',
-    careDifficulty: 'Aşırı Uzmanlık',
-    sunlight: 'Hassas Sıcaklık Kontrolü',
-    watering: 'Besleyici Mineral Su',
-    description: 'Doğada mavi pigment geni bulunmadığı için genetik mühendisliği ve özel aşılama ile elde edilen ulaşılması güç lüks gül.',
-    fullStory: 'Güllerde delphinidin adı verilen mavi renk pigmenti doğal olarak bulunmaz. Yıllar süren moleküler biyoloji çalışmaları sonucunda Avustralya ve Japon araştırmacılar tarafından sınırlı sayıda üretilmiştir. İmkansız aşkın simgesidir.',
-    image: 'images/mavi_gul.png',
+    id: 'kaktus-cicegi',
+    name: 'Turuncu Kaktüs Çiçeği',
+    latinName: 'Rebutia minuscula',
+    rarity: 'kolay',
+    rarityLabel: 'Kolay Bulunan',
+    category: 'Kaktüs & Sukulentler',
+    subCategory: 'Sukulent & Kaktüs',
+    origin: 'Güney Amerika dağları',
+    careDifficulty: 'Çok Kolay',
+    sunlight: 'Tam Tamına Bol Güneş',
+    watering: '2 Haftada 1 Kez',
+    description: 'Dikenli minik gövdesinin üzerinden taç gibi yükselen canlı turuncu ve kırmızı bahar çiçekleri.',
+    fullStory: 'Rebutia kaktüsleri kışın soğuk ve kuru bir dinlenme dönemi geçirdikten sonra ilkbaharda muazzam bir çiçek patlaması yaşar. Unutkan bitki severler için idealdir.',
+    image: 'images/kaktus_cicegi.png',
     isFavorite: false
   },
   {
-    id: 'maymun-orkide',
-    name: 'Maymun Yüzlü Orkide',
-    latinName: 'Dracula simia',
+    id: 'kadupul-cicegi',
+    name: 'Kadupul Çiçeği (Gecenin Kraliçesi)',
+    latinName: 'Epiphyllum oxypetalum',
     rarity: 'zor',
     rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Nadir Orkide',
-    origin: 'Ekvador & Peru Bulut Ormanları',
-    careDifficulty: 'Çok Zor (Bulut Ormanı Şartı)',
-    sunlight: 'Yüksek İrtifa Gölgeliği',
-    watering: '%95 Nem & Soğuk Hava',
-    description: 'Çiçek merkezindeki taç yaprak dizilimi birebir sevimli bir maymun yüzünü andıran doğanın şaşırtıcı tasarımı.',
-    fullStory: '2000 metrenin üzerindeki puslu dağ ormanlarında yetişen Dracula simia, olgunlaşmış portakal kokusu yayar. İklim değişikliklerine aşırı duyarlı olduğu için doğal ortamı dışında yaşatılması neredeyse imkansızdır.',
-    image: 'images/maymun_orkide.png',
+    category: 'Kaktüs & Sukulentler',
+    subCategory: 'Mistik Kaktüs Çiçeği',
+    origin: 'Sri Lanka',
+    careDifficulty: 'Paha Biçilemez / Özel',
+    sunlight: 'Sadece Gece Yarısı Işıksız',
+    watering: 'Nemli Tropik',
+    description: 'Gece yarısı saatlerinde açıp şafak sökmeden hemen önce solan, dünyada paha biçilemeyen ve ticareti yapılmayan mucizevi çiçek.',
+    fullStory: 'Kadupul çiçeği dalından koparıldığı anda birkaç saat içinde ölür. Bu yüzden açık pazarda fiyatı yoktur; paha biçilemez kabul edilir. Çiçek açtığında etrafa büyüleyici sakinleştirici bir koku yayar.',
+    image: 'images/kadupul.png',
     isFavorite: false
   },
+
+  // --- EGZOTİK & NADİR TÜRLER (4 Çiçek) ---
   {
-    id: 'kutup-meneksesi',
-    name: 'Kutup / Alp Menekşesi',
-    latinName: 'Silene acaulis',
+    id: 'ceset-cicegi',
+    name: 'Ceset Çiçeği (Titan Arum)',
+    latinName: 'Amorphophallus titanum',
     rarity: 'zor',
     rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Alp Bitkisi',
-    origin: 'Arktik & Yüksek Yükselti Alpleri',
-    careDifficulty: 'Aşırı Zor (Donma Şartı)',
-    sunlight: 'Sert Dağ Güneşi',
-    watering: 'Buzlu Erime Suyu',
-    description: 'Kutupların ve dondurucu dağ zirvelerinin kayalıklarında yosun gibi yayılarak açan pembe dayanıklı mucize.',
-    fullStory: 'Silene acaulis yüzlerce yıl yaşayabilen yavaş büyüyen bir halı bitkisidir. Sert rüzgarlardan ve -40°C soğuktan korunmak için kayalara kenetlenir. Tohumlarının çimlenmesi karlı kış mevsimine bağlıdır.',
-    image: 'images/kutup_meneksesi.png',
+    category: 'Egzotik & Nadir Türler',
+    subCategory: 'Eksotik Dev Bitki',
+    origin: 'Sumatra Yağmur Ormanları',
+    careDifficulty: 'Sera / Botanik Bahçesi',
+    sunlight: 'Sıcak Tropik Nem',
+    watering: 'Sürekli Yüksek Nem',
+    description: '7 ile 10 yılda yalnızca bir kez 48 saatliğine açan, 3 metre boya ulaşabilen dünyanın en devasa çiçeği.',
+    fullStory: 'Titan Arum açtığında böcekleri çekmek için etrafa keskin bir koku yayar ve gövde sıcaklığını 37°C dereceye kadar yükseltebilir. Çiçeklenme dönemi dünya genelindeki botanik bahçelerinde canlı yayınlanır.',
+    image: 'https://images.unsplash.com/photo-1534710961216-75c88202f43e?q=80&w=800&auto=format&fit=crop',
     isFavorite: false
   },
   {
@@ -353,7 +454,8 @@ const flowersData = [
     latinName: 'Rafflesia arnoldii',
     rarity: 'zor',
     rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Parazit Dev Bitki',
+    category: 'Egzotik & Nadir Türler',
+    subCategory: 'Parazit Dev Bitki',
     origin: 'Borneo & Sumatra Yağmur Ormanları',
     careDifficulty: 'İmkansız (Kültüre Alınamaz)',
     sunlight: 'Orman Tabanı Zifiri Gölge',
@@ -369,7 +471,8 @@ const flowersData = [
     latinName: 'Victoria amazonica',
     rarity: 'zor',
     rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Su Çiçeği',
+    category: 'Egzotik & Nadir Türler',
+    subCategory: 'Su Çiçeği',
     origin: 'Amazon Nehir Havzası',
     careDifficulty: 'Özel Havuz / Botanik Bahçesi',
     sunlight: 'Sıcak Nemli Güneş',
@@ -380,29 +483,31 @@ const flowersData = [
     isFavorite: false
   },
   {
-    id: 'cikolata-kozmosu',
-    name: 'Çikolata Kozmosu',
-    latinName: 'Cosmos atrosanguineus',
+    id: 'kutup-meneksesi',
+    name: 'Kutup / Alp Menekşesi',
+    latinName: 'Silene acaulis',
     rarity: 'zor',
     rarityLabel: 'Zor Bulunan (Nadir)',
-    category: 'Nadir Kır Çiçeği',
-    origin: 'Meksika',
-    careDifficulty: 'Zor (Klonlama İle Çoğalır)',
-    sunlight: 'Sıcak Güneşli',
-    watering: 'Orta Derece',
-    description: 'Koyu vanilya ve gerçek çikolata kokusu salgılayan, kadife koyu kahve-kırmızı yapraklı soyu doğada tükenmiş nadir tür.',
-    fullStory: 'Çikolata Kozmosu 100 yılı aşkın sürüdür vahşi doğada tükenmiş durumdadır. Günümüzdeki tüm örnekler 1902 yılında laboratuvarda klonlanan tek bir kökten türetilmiştir. Sıcak günlerde etrafa buram buram çikolata kokusu yayar.',
-    image: 'images/cikolata_kozmosu.png',
+    category: 'Egzotik & Nadir Türler',
+    subCategory: 'Alp Bitkisi',
+    origin: 'Arktik & Yüksek Yükselti Alpleri',
+    careDifficulty: 'Aşırı Zor (Donma Şartı)',
+    sunlight: 'Sert Dağ Güneşi',
+    watering: 'Buzlu Erime Suyu',
+    description: 'Kutupların ve dondurucu dağ zirvelerinin kayalıklarında yosun gibi yayılarak açan pembe dayanıklı mucize.',
+    fullStory: 'Silene acaulis yüzlerce yıl yaşayabilen yavaş büyüyen bir halı bitkisidir. Sert rüzgarlardan ve -40°C soğuktan korunmak için kayalara kenetlenir. Tohumlarının çimlenmesi karlı kış mevsimine bağlıdır.',
+    image: 'images/kutup_meneksesi.png',
     isFavorite: false
   }
 ];
 
-// Application State variables
+// Application State Variables
 let activeRarityFilter = 'all';
+let activeCategoryFilter = 'all';
 let searchQuery = '';
 let activeSort = 'default';
 
-// DOM Elements
+// DOM Element References
 const searchInput = document.getElementById('flower-search-input');
 const clearSearchBtn = document.getElementById('clear-search-btn');
 const flowerGrid = document.getElementById('flower-grid');
@@ -416,6 +521,17 @@ const detailModal = document.getElementById('detail-modal');
 const modalCloseBtn = document.getElementById('modal-close-btn');
 const modalBodyContent = document.getElementById('modal-body-content');
 const toastEl = document.getElementById('toast');
+
+// Navigation Button Elements
+const navBtnCatalog = document.getElementById('nav-btn-catalog');
+const navBtnCategories = document.getElementById('nav-btn-categories');
+const navBtnFavorites = document.getElementById('nav-btn-favorites');
+const navBtnContact = document.getElementById('nav-btn-contact');
+
+// View Containers
+const catalogPageView = document.getElementById('catalog-page-view');
+const categoriesPageView = document.getElementById('categories-page-view');
+const contactPageView = document.getElementById('contact-page-view');
 
 // Badge Count Elements
 const countEasyEl = document.getElementById('count-easy');
@@ -452,7 +568,7 @@ function saveFavoritesToStorage() {
   }
 }
 
-// Theme Toggle Logic (Koyu / Açık Tema)
+// Theme Toggle Logic
 function initTheme() {
   const savedTheme = localStorage.getItem('cicekDunyasi_theme');
   if (savedTheme) {
@@ -491,10 +607,11 @@ document.addEventListener('DOMContentLoaded', () => {
   loadFavoritesFromStorage();
   updateCounts();
   renderFlowers();
+  renderCategoriesView();
   setupEventListeners();
 });
 
-// Update Badge Counter numbers
+// Update Badge Counter Numbers
 function updateCounts() {
   const easyCount = flowersData.filter(f => f.rarity === 'kolay').length;
   const rareCount = flowersData.filter(f => f.rarity === 'zor').length;
@@ -509,28 +626,37 @@ function updateCounts() {
   if (navFavCount) navFavCount.textContent = favCount;
 }
 
-// Render Flower Cards Grid
+// Render Flower Cards Grid with Rarity, Category and Search Filters
 function renderFlowers() {
-  // 1. Filter by Rarity Tab / Favorites
   let filtered = flowersData.filter(flower => {
-    if (activeRarityFilter === 'all') return true;
-    if (activeRarityFilter === 'favorites') return flower.isFavorite;
-    return flower.rarity === activeRarityFilter;
+    // 1. Rarity Tab / Favorites Filter
+    let rarityMatch = true;
+    if (activeRarityFilter === 'favorites') rarityMatch = flower.isFavorite;
+    else if (activeRarityFilter !== 'all') rarityMatch = flower.rarity === activeRarityFilter;
+
+    // 2. Category Filter
+    let categoryMatch = true;
+    if (activeCategoryFilter !== 'all') {
+      categoryMatch = (flower.category === activeCategoryFilter);
+    }
+
+    return rarityMatch && categoryMatch;
   });
 
-  // 2. Filter by Search Query (Case Insensitive Turkish character friendly)
+  // 3. Filter by Search Query
   if (searchQuery.trim() !== '') {
     const q = searchQuery.toLocaleLowerCase('tr');
     filtered = filtered.filter(flower => {
       return flower.name.toLocaleLowerCase('tr').includes(q) ||
              flower.latinName.toLocaleLowerCase('tr').includes(q) ||
              flower.category.toLocaleLowerCase('tr').includes(q) ||
+             (flower.subCategory && flower.subCategory.toLocaleLowerCase('tr').includes(q)) ||
              flower.description.toLocaleLowerCase('tr').includes(q) ||
              flower.rarityLabel.toLocaleLowerCase('tr').includes(q);
     });
   }
 
-  // 3. Sort logic
+  // 4. Sort Logic
   if (activeSort === 'name-asc') {
     filtered.sort((a, b) => a.name.localeCompare(b.name, 'tr'));
   } else if (activeSort === 'rarity-desc') {
@@ -539,11 +665,18 @@ function renderFlowers() {
     filtered.sort((a, b) => (a.rarity === 'kolay' ? -1 : 1));
   }
 
+  // Update Category Active Banner
+  updateCategoryBanner();
+
   // Update UI search feedback text
-  if (searchQuery.trim() !== '' || activeRarityFilter !== 'all') {
+  if (searchQuery.trim() !== '' || activeRarityFilter !== 'all' || activeCategoryFilter !== 'all') {
     searchFeedback.classList.remove('hidden');
-    let filterLabel = activeRarityFilter === 'favorites' ? 'Favorilerim' : (activeRarityFilter === 'kolay' ? 'Kolay Bulunanlar' : (activeRarityFilter === 'zor' ? 'Nadir Türler' : 'Tümü'));
-    let msg = `Görüntülenen: <strong>${filtered.length}</strong> çiçek (${filterLabel})`;
+    let filterLabel = activeRarityFilter === 'favorites' ? 'Favorilerim' : (activeRarityFilter === 'kolay' ? 'Kolay Bulunanlar' : (activeRarityFilter === 'zor' ? 'Nadir Türler' : 'Tüm Türler'));
+    let msg = `Görüntülenen: <strong>${filtered.length}</strong> çiçek (${filterLabel}`;
+    if (activeCategoryFilter !== 'all') {
+      msg += ` • Kategori: <em>${escapeHtml(activeCategoryFilter)}</em>`;
+    }
+    msg += `)`;
     if (searchQuery.trim() !== '') {
       msg += ` ("<em>${escapeHtml(searchQuery)}</em>" araması için)`;
     }
@@ -568,7 +701,7 @@ function renderFlowers() {
       emptyState.innerHTML = `
         <div class="empty-icon">🔍</div>
         <h3>Aradığınız Çiçek Bulunamadı</h3>
-        <p>Arama kriterlerinize uyan bir çiçek bulunamadı. Lütfen farklı bir kelime yazmayı veya filtreleri kaldırmayı deneyin.</p>
+        <p>Arama veya kategori kriterlerinize uyan bir çiçek bulunamadı. Lütfen farklı bir kelime yazmayı veya filtreleri sıfırlamayı deneyin.</p>
         <button class="btn btn-primary" onclick="resetFilters()">Tüm Çiçekleri Göster</button>
       `;
     }
@@ -581,7 +714,7 @@ function renderFlowers() {
   flowerGrid.innerHTML = filtered.map(flower => createFlowerCardHTML(flower)).join('');
 }
 
-// Generate single card HTML
+// Generate Single Flower Card HTML
 function createFlowerCardHTML(flower) {
   const isZor = flower.rarity === 'zor';
   const badgeClass = isZor ? 'zor' : 'kolay';
@@ -605,7 +738,9 @@ function createFlowerCardHTML(flower) {
 
       <div class="card-content">
         <div class="card-meta">
-          <span class="card-category">${escapeHtml(flower.category)}</span>
+          <span class="card-category" onclick="filterByCategory('${escapeHtml(flower.category)}'); event.stopPropagation();" title="Kategoriye Göre Filtrele" style="cursor: pointer;">
+            ${escapeHtml(flower.category)}
+          </span>
           <span class="card-latin">${escapeHtml(flower.latinName)}</span>
         </div>
         <h2 class="card-title">${displayName}</h2>
@@ -630,27 +765,145 @@ function createFlowerCardHTML(flower) {
   `;
 }
 
+// Render Categories Grid on the Categories Page
+function renderCategoriesView() {
+  const categoriesGrid = document.getElementById('categories-grid');
+  if (!categoriesGrid) return;
+
+  categoriesGrid.innerHTML = categoriesData.map(cat => {
+    const flowersInCat = flowersData.filter(f => f.category === cat.id);
+    const count = flowersInCat.length;
+    const sampleNames = flowersInCat.map(f => f.name).join(', ');
+
+    return `
+      <div class="category-card" style="--cat-border: ${cat.borderColor};" onclick="filterByCategory('${escapeHtml(cat.id)}')">
+        <div class="cat-card-header" style="background: ${cat.gradient}; border-bottom: 1px solid ${cat.borderColor};">
+          <div class="cat-header-top">
+            <div class="cat-icon-wrapper" style="border-color: ${cat.borderColor};">
+              <span class="cat-icon">${cat.icon}</span>
+            </div>
+            <span class="cat-count-pill" style="background: rgba(0, 0, 0, 0.4); border: 1px solid ${cat.borderColor};">
+              <strong>${count}</strong> Tür Çiçek
+            </span>
+          </div>
+          <h2 class="cat-title">${escapeHtml(cat.name)}</h2>
+          <span class="cat-tagline">${escapeHtml(cat.tagline)}</span>
+        </div>
+
+        <div class="cat-card-body">
+          <p class="cat-desc">${escapeHtml(cat.description)}</p>
+          
+          <div class="cat-samples-box">
+            <span class="cat-samples-title">🌸 Bu Kategorideki Çiçekler:</span>
+            <div class="cat-samples-tags">
+              ${flowersInCat.map(f => `<span class="cat-sample-tag">${escapeHtml(f.name)}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="cat-card-footer">
+            <button class="btn btn-primary cat-explore-btn" onclick="filterByCategory('${escapeHtml(cat.id)}'); event.stopPropagation();">
+              <span>${cat.icon}</span> ${escapeHtml(cat.name)} Çiçeklerini İncele →
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Filter flowers by Category and jump to Catalog View
+function filterByCategory(categoryName) {
+  activeCategoryFilter = categoryName;
+  switchView('catalog');
+  renderFlowers();
+  showToast(`📁 <strong>${escapeHtml(categoryName)}</strong> kategorisine ait çiçekler listelendi.`);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Clear Category Filter
+function clearCategoryFilter() {
+  activeCategoryFilter = 'all';
+  renderFlowers();
+  showToast(`🌿 Tüm kategoriler gösteriliyor.`);
+}
+
+// Update Active Category Banner Component in Catalog View
+function updateCategoryBanner() {
+  const banner = document.getElementById('category-active-banner');
+  const bannerName = document.getElementById('category-banner-name');
+  const bannerCount = document.getElementById('category-banner-count');
+  const bannerIcon = document.getElementById('category-banner-icon');
+
+  if (!banner) return;
+
+  if (activeCategoryFilter !== 'all') {
+    const catObj = categoriesData.find(c => c.id === activeCategoryFilter);
+    const count = flowersData.filter(f => f.category === activeCategoryFilter).length;
+
+    if (bannerName) bannerName.textContent = activeCategoryFilter;
+    if (bannerCount) bannerCount.textContent = count;
+    if (bannerIcon && catObj) bannerIcon.textContent = catObj.icon;
+
+    banner.classList.remove('hidden');
+  } else {
+    banner.classList.add('hidden');
+  }
+}
+
+// Centralized View Switching Helper ('catalog' | 'categories' | 'favorites' | 'contact')
+function switchView(targetView) {
+  // Hide all view containers
+  if (catalogPageView) catalogPageView.classList.add('hidden');
+  if (categoriesPageView) categoriesPageView.classList.add('hidden');
+  if (contactPageView) contactPageView.classList.add('hidden');
+
+  // Deactivate all navbar links
+  if (navBtnCatalog) navBtnCatalog.classList.remove('active');
+  if (navBtnCategories) navBtnCategories.classList.remove('active');
+  if (navBtnFavorites) navBtnFavorites.classList.remove('active');
+  if (navBtnContact) navBtnContact.classList.remove('active');
+
+  if (targetView === 'catalog') {
+    if (catalogPageView) catalogPageView.classList.remove('hidden');
+    if (navBtnCatalog) navBtnCatalog.classList.add('active');
+  } else if (targetView === 'categories') {
+    if (categoriesPageView) categoriesPageView.classList.remove('hidden');
+    if (navBtnCategories) navBtnCategories.classList.add('active');
+    renderCategoriesView();
+  } else if (targetView === 'favorites') {
+    if (catalogPageView) catalogPageView.classList.remove('hidden');
+    if (navBtnFavorites) navBtnFavorites.classList.add('active');
+  } else if (targetView === 'contact') {
+    if (contactPageView) contactPageView.classList.remove('hidden');
+    if (navBtnContact) navBtnContact.classList.add('active');
+  }
+}
+
 // Event Listeners setup
 function setupEventListeners() {
   // Live Search input
-  searchInput.addEventListener('input', (e) => {
-    searchQuery = e.target.value;
-    if (searchQuery.trim() !== '') {
-      clearSearchBtn.classList.remove('hidden');
-    } else {
-      clearSearchBtn.classList.add('hidden');
-    }
-    renderFlowers();
-  });
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      if (searchQuery.trim() !== '') {
+        clearSearchBtn.classList.remove('hidden');
+      } else {
+        clearSearchBtn.classList.add('hidden');
+      }
+      renderFlowers();
+    });
+  }
 
   // Clear Search button
-  clearSearchBtn.addEventListener('click', () => {
-    searchInput.value = '';
-    searchQuery = '';
-    clearSearchBtn.classList.add('hidden');
-    searchInput.focus();
-    renderFlowers();
-  });
+  if (clearSearchBtn) {
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      clearSearchBtn.classList.add('hidden');
+      searchInput.focus();
+      renderFlowers();
+    });
+  }
 
   // Rarity Tab Buttons
   tabButtons.forEach(btn => {
@@ -663,13 +916,17 @@ function setupEventListeners() {
   });
 
   // Sort select dropdown
-  sortSelect.addEventListener('change', (e) => {
-    activeSort = e.target.value;
-    renderFlowers();
-  });
+  if (sortSelect) {
+    sortSelect.addEventListener('change', (e) => {
+      activeSort = e.target.value;
+      renderFlowers();
+    });
+  }
 
   // Reset all filters button
-  resetAllFiltersBtn.addEventListener('click', resetFilters);
+  if (resetAllFiltersBtn) {
+    resetAllFiltersBtn.addEventListener('click', resetFilters);
+  }
 
   // Theme Toggle Button
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
@@ -677,11 +934,17 @@ function setupEventListeners() {
     themeToggleBtn.addEventListener('click', toggleTheme);
   }
 
-  // Quick tag buttons
+  // Quick tag buttons in Hero
   document.querySelectorAll('.quick-tag-btn').forEach(tagBtn => {
     tagBtn.addEventListener('click', () => {
       const searchVal = tagBtn.getAttribute('data-search');
       const filterVal = tagBtn.getAttribute('data-filter');
+      const catVal = tagBtn.getAttribute('data-category');
+
+      if (catVal) {
+        filterByCategory(catVal);
+        return;
+      }
 
       if (searchVal) {
         searchInput.value = searchVal;
@@ -704,46 +967,36 @@ function setupEventListeners() {
     });
   });
 
-  // Page View Switchers (Çiçek Rehberi, Favoriler vs İletişim)
-  const navBtnCatalog = document.getElementById('nav-btn-catalog');
-  const navBtnContact = document.getElementById('nav-btn-contact');
-  const navBtnFavorites = document.getElementById('nav-btn-favorites');
-  const catalogPageView = document.getElementById('catalog-page-view');
-  const contactPageView = document.getElementById('contact-page-view');
-
+  // Navbar View Switchers
   if (navBtnCatalog) {
     navBtnCatalog.addEventListener('click', () => {
-      navBtnCatalog.classList.add('active');
-      if (navBtnContact) navBtnContact.classList.remove('active');
-      if (navBtnFavorites) navBtnFavorites.classList.remove('active');
-      catalogPageView.classList.remove('hidden');
-      contactPageView.classList.add('hidden');
-
       activeRarityFilter = 'all';
+      activeCategoryFilter = 'all';
       tabButtons.forEach(b => {
         if (b.getAttribute('data-rarity') === 'all') b.classList.add('active');
         else b.classList.remove('active');
       });
-
+      switchView('catalog');
       renderFlowers();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  if (navBtnCategories) {
+    navBtnCategories.addEventListener('click', () => {
+      switchView('categories');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
   if (navBtnFavorites) {
     navBtnFavorites.addEventListener('click', () => {
-      navBtnFavorites.classList.add('active');
-      if (navBtnCatalog) navBtnCatalog.classList.remove('active');
-      if (navBtnContact) navBtnContact.classList.remove('active');
-      catalogPageView.classList.remove('hidden');
-      contactPageView.classList.add('hidden');
-
       activeRarityFilter = 'favorites';
       tabButtons.forEach(b => {
         if (b.getAttribute('data-rarity') === 'favorites') b.classList.add('active');
         else b.classList.remove('active');
       });
-
+      switchView('favorites');
       renderFlowers();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -751,16 +1004,12 @@ function setupEventListeners() {
 
   if (navBtnContact) {
     navBtnContact.addEventListener('click', () => {
-      navBtnContact.classList.add('active');
-      if (navBtnCatalog) navBtnCatalog.classList.remove('active');
-      if (navBtnFavorites) navBtnFavorites.classList.remove('active');
-      contactPageView.classList.remove('hidden');
-      catalogPageView.classList.add('hidden');
+      switchView('contact');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  // Email badge button click listener (Opens Gmail Web & Desktop Mail app + Copies to Clipboard)
+  // Email badge button click listener
   const emailBtn = document.getElementById('btn-copy-open-email');
   if (emailBtn) {
     emailBtn.addEventListener('click', (e) => {
@@ -769,16 +1018,13 @@ function setupEventListeners() {
       const emailStr = 'palamutiletisim@gmail.com';
       const subject = 'Çiçek Dünyası - Hata ve Öneri Bildirimi';
 
-      // Copy email to clipboard
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(emailStr).catch(() => {});
       }
 
-      // 1. Open Gmail Web composer in a new tab
       const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailStr}&su=${encodeURIComponent(subject)}`;
       window.open(gmailUrl, '_blank');
 
-      // 2. Also trigger mailto: protocol for desktop mail apps (Outlook / Windows Mail)
       setTimeout(() => {
         window.location.href = `mailto:${emailStr}?subject=${encodeURIComponent(subject)}`;
       }, 400);
@@ -788,22 +1034,23 @@ function setupEventListeners() {
   }
 
   // Modal close handlers
-  modalCloseBtn.addEventListener('click', closeModal);
-  detailModal.addEventListener('click', (e) => {
-    if (e.target === detailModal) closeModal();
-  });
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+  if (detailModal) {
+    detailModal.addEventListener('click', (e) => {
+      if (e.target === detailModal) closeModal();
+    });
+  }
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !detailModal.classList.contains('hidden')) {
+    if (e.key === 'Escape' && detailModal && !detailModal.classList.contains('hidden')) {
       closeModal();
     }
   });
 }
 
-// Web3Forms Access Key (Web3Forms.com sitesinden palamutiletisim@gmail.com için alınan ücretsiz anahtar)
-// Anahtar girildiğinde mesajlar doğrudan arka planda mail kutunuza düşer!
+// Web3Forms Access Key
 const WEB3FORMS_ACCESS_KEY = '949c47a4-2dae-4f20-a64e-983d94653a8b';
 
-// Contact form submit handler
+// Contact Form Submit Handler
 async function handleContactSubmit(event) {
   event.preventDefault();
   const submitBtn = event.target.querySelector('button[type="submit"]');
@@ -812,7 +1059,6 @@ async function handleContactSubmit(event) {
   const subject = document.getElementById('contact-subject').value;
   const message = document.getElementById('contact-message').value;
 
-  // Eğer Web3Forms Anahtarı Tanımlıysa Arka Planda Mail Gönder
   if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.trim() !== '') {
     const originalBtnText = submitBtn.innerHTML;
     submitBtn.disabled = true;
@@ -847,12 +1093,11 @@ async function handleContactSubmit(event) {
       submitBtn.innerHTML = originalBtnText;
     }
   } else {
-    // Anahtar girilmediğinde Varsayılan Mailto (E-posta İstemcisi) Yöntemi
     triggerMailtoFallback(name, userEmail, subject, message);
   }
 }
 
-// Yardımcı Mailto Yönlendirme Fonksiyonu
+// Fallback Mailto Trigger
 function triggerMailtoFallback(name, userEmail, subject, message) {
   const mailSubject = encodeURIComponent(`[Çiçek Dünyası] ${subject} - ${name}`);
   const mailBody = encodeURIComponent(`Gönderen: ${name} (${userEmail})\nKonu: ${subject}\n\nMesaj:\n${message}`);
@@ -863,24 +1108,27 @@ function triggerMailtoFallback(name, userEmail, subject, message) {
   document.getElementById('contact-feedback-form').reset();
 }
 
-// Reset filters function
+// Reset All Filters
 function resetFilters() {
-  searchInput.value = '';
+  if (searchInput) searchInput.value = '';
   searchQuery = '';
-  clearSearchBtn.classList.add('hidden');
+  if (clearSearchBtn) clearSearchBtn.classList.add('hidden');
   activeRarityFilter = 'all';
+  activeCategoryFilter = 'all';
   activeSort = 'default';
-  sortSelect.value = 'default';
+  if (sortSelect) sortSelect.value = 'default';
 
   tabButtons.forEach(b => {
     if (b.getAttribute('data-rarity') === 'all') b.classList.add('active');
     else b.classList.remove('active');
   });
 
+  updateCategoryBanner();
   renderFlowers();
+  showToast(`🌿 Tüm filtreler sıfırlandı.`);
 }
 
-// Toggle Favorite state
+// Toggle Favorite State
 function toggleFavorite(id, event) {
   if (event) event.stopPropagation();
   const flower = flowersData.find(f => f.id === id);
@@ -906,7 +1154,9 @@ function openFlowerDetail(id) {
     <div class="modal-content-inner">
       <div class="modal-header-meta">
         <span class="card-badge ${badgeClass}">${flower.rarityLabel}</span>
-        <span class="card-category">${escapeHtml(flower.category)}</span>
+        <span class="card-category" onclick="closeModal(); filterByCategory('${escapeHtml(flower.category)}');" style="cursor: pointer;" title="Kategori Çiçeklerini Göster">
+          📁 ${escapeHtml(flower.category)}
+        </span>
       </div>
       <h2 class="modal-flower-title">${escapeHtml(flower.name)}</h2>
       <div class="modal-latin-title">Botanık Adı: ${escapeHtml(flower.latinName)}</div>
@@ -935,7 +1185,7 @@ function openFlowerDetail(id) {
       <h3 class="modal-section-title">📖 Botanik Hikayesi & Yetiştirme Rehberi</h3>
       <p class="modal-full-desc">${escapeHtml(flower.fullStory)}</p>
 
-      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: flex-end;">
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: flex-end; flex-wrap: wrap;">
         <button class="btn btn-outline" onclick="toggleFavorite('${flower.id}'); openFlowerDetail('${flower.id}');">
           ${flower.isFavorite ? '❤️ Favorilerde' : '🤍 Favorilere Ekle'}
         </button>
@@ -949,12 +1199,13 @@ function openFlowerDetail(id) {
 }
 
 function closeModal() {
-  detailModal.classList.add('hidden');
+  if (detailModal) detailModal.classList.add('hidden');
   document.body.style.overflow = 'auto';
 }
 
-// Toast notification helper
+// Toast Notification Helper
 function showToast(message) {
+  if (!toastEl) return;
   toastEl.innerHTML = message;
   toastEl.classList.remove('hidden');
   setTimeout(() => {
@@ -962,7 +1213,7 @@ function showToast(message) {
   }, 3000);
 }
 
-// Helper utilities
+// Utility Helpers
 function escapeHtml(str) {
   if (!str) return '';
   return str

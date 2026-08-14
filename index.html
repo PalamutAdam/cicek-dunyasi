@@ -43,6 +43,9 @@
         <button id="nav-btn-catalog" class="nav-nav-btn active">
           <span>🌸</span> Çiçek Rehberi
         </button>
+        <button id="nav-btn-categories" class="nav-nav-btn">
+          <span>📁</span> Kategoriler
+        </button>
         <button id="nav-btn-favorites" class="nav-nav-btn">
           <span>❤️</span> Favoriler (<span id="nav-fav-count">0</span>)
         </button>
@@ -133,6 +136,17 @@
           </div>
         </div>
 
+        <!-- Active Category Banner Indicator -->
+        <div id="category-active-banner" class="category-active-banner hidden">
+          <div class="category-banner-info">
+            <span class="category-banner-icon" id="category-banner-icon">📁</span>
+            <span>Seçili Kategori: <strong id="category-banner-name">Güller</strong> (<span id="category-banner-count">4</span> Çiçek)</span>
+          </div>
+          <button id="clear-category-filter-btn" class="btn-clear-category" onclick="clearCategoryFilter()">
+            <span>✕</span> Kategori Filtresini Kaldır
+          </button>
+        </div>
+
         <!-- Active Search & Results Counter Feedback -->
         <div id="search-feedback" class="search-feedback hidden">
           <span id="search-results-text"></span>
@@ -148,15 +162,32 @@
         <div id="empty-state" class="empty-state hidden">
           <div class="empty-icon">🔍</div>
           <h3>Aradığınız Çiçek Bulunamadı</h3>
-          <p>Arama kriterlerinize uyan bir çiçek bulunamadı. Lütfen farklı bir kelime yazmayı veya filtreleri kaldırmayı
-            deneyin.</p>
+          <p>Arama veya kategori kriterlerinize uyan bir çiçek bulunamadı. Lütfen farklı bir kelime yazmayı veya filtreleri kaldırmayı deneyin.</p>
           <button class="btn btn-primary" onclick="resetFilters()">Tüm Çiçekleri Göster</button>
         </div>
       </div>
     </main>
   </div>
 
-  <!-- VIEW 2: CONTACT PAGE VIEW -->
+  <!-- VIEW 2: CATEGORIES PAGE VIEW -->
+  <div id="categories-page-view" class="categories-page-container hidden">
+    <div class="categories-content-wrapper">
+      <div class="categories-header">
+        <span class="categories-badge">📁 Dijital Botanik Rehberi</span>
+        <h1 class="categories-title">Çiçek <span class="gradient-text">Kategorileri</span></h1>
+        <p class="categories-subtitle">
+          Sitemizdeki 24 nadide çiçeği 7 botanik kategorisinde keşfedin. İlgilendiğiniz kategoriye tıklayarak ait türleri anında listeleyebilirsiniz.
+        </p>
+      </div>
+
+      <!-- Categories Grid -->
+      <div id="categories-grid" class="categories-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 3: CONTACT PAGE VIEW -->
   <div id="contact-page-view" class="contact-page-container hidden">
     <div class="contact-content-wrapper">
       <div class="contact-header">
