@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Çiçek Dünyası | Nadir ve Kolay Bulunan Çiçek Rehberi</title>
-  <meta name="description" content="Kolay ve zor bulunan çiçekleri keşfedin, bakım ipuçlarını öğrenin ve arama yaparak istediğiniz çiçeğe anında ulaşın. Palamut Ağacının Hizmetidir.">
-  
+  <meta name="description"
+    content="Kolay ve zor bulunan çiçekleri keşfedin, bakım ipuçlarını öğrenin ve arama yaparak istediğiniz çiçeğe anında ulaşın. Palamut Ağacının Hizmetidir.">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
   <!-- CSS stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
   <!-- Ambient Glow Background Particles -->
@@ -71,19 +76,16 @@
         <span class="hero-badge">✨ Dijital Çiçek Ansiklopedisi</span>
         <h1 class="hero-title">Doğanın En Özel ve Nadide <span class="gradient-text">Çiçeklerini Keşfedin</span></h1>
         <p class="hero-subtitle">
-          Evlerde ve bahçelerde kolayca yetiştirilebilen popüler türlerden, dünyada sadece belirli mikroklimada açan çok zor bulunan nadir çiçeklere kadar geniş koleksiyonumuzda gezinin.
+          Evlerde ve bahçelerde kolayca yetiştirilebilen popüler türlerden, dünyada sadece belirli mikroklimada açan çok
+          zor bulunan nadir çiçeklere kadar geniş koleksiyonumuzda gezinin.
         </p>
 
         <!-- Main Interactive Search Bar -->
         <div class="search-box-wrapper">
           <div class="search-input-group">
             <span class="search-icon">🔍</span>
-            <input 
-              type="text" 
-              id="flower-search-input" 
-              placeholder="Çiçek adı veya türü yazın (örn: gül, papatya, orkide, Halfeti)..." 
-              autocomplete="off"
-            />
+            <input type="text" id="flower-search-input"
+              placeholder="Çiçek adı veya türü yazın (örn: gül, papatya, orkide, Halfeti)..." autocomplete="off" />
             <button id="clear-search-btn" class="clear-btn hidden" title="Aramayı Temizle">✕</button>
           </div>
 
@@ -146,7 +148,8 @@
         <div id="empty-state" class="empty-state hidden">
           <div class="empty-icon">🔍</div>
           <h3>Aradığınız Çiçek Bulunamadı</h3>
-          <p>Arama kriterlerinize uyan bir çiçek bulunamadı. Lütfen farklı bir kelime yazmayı veya filtreleri kaldırmayı deneyin.</p>
+          <p>Arama kriterlerinize uyan bir çiçek bulunamadı. Lütfen farklı bir kelime yazmayı veya filtreleri kaldırmayı
+            deneyin.</p>
           <button class="btn btn-primary" onclick="resetFilters()">Tüm Çiçekleri Göster</button>
         </div>
       </div>
@@ -159,17 +162,14 @@
       <div class="contact-header">
         <span class="contact-badge">✉️ İletişim & Geri Bildirim</span>
         <h1 class="contact-title">Bizimle İletişime Geçin</h1>
-        <p class="contact-subtitle">Sorularınız, görüşleriniz veya hata bildirimleriniz için doğrudan e-posta gönderebilirsiniz.</p>
+        <p class="contact-subtitle">Sorularınız, görüşleriniz veya hata bildirimleriniz için doğrudan e-posta
+          gönderebilirsiniz.</p>
       </div>
 
       <!-- Glowing Email Badge (White text, #c071f5 gradient glowing background) -->
       <div class="contact-email-wrapper">
-        <a 
-          href="mailto:palamutiletisim@gmail.com?subject=Çiçek%20Dünyası%20-%20Hata%20ve%20Öneri%20Bildirimi" 
-          id="btn-copy-open-email" 
-          class="contact-email-badge" 
-          title="Tıkla ve e-posta gönder veya kopyala"
-        >
+        <a href="mailto:palamutiletisim@gmail.com?subject=Çiçek%20Dünyası%20-%20Hata%20ve%20Öneri%20Bildirimi"
+          id="btn-copy-open-email" class="contact-email-badge" title="Tıkla ve e-posta gönder veya kopyala">
           <span class="email-icon">📧</span>
           <span class="email-address">palamutiletisim@gmail.com</span>
           <span class="email-action-pill">✉️ Gönder</span>
@@ -183,7 +183,8 @@
           <span class="palamut-author">Palamut Adam</span>
         </div>
         <p class="palamut-note-text">
-          Selamlar ben Palamut Adam bu sitemiz yeni çıktı ve hataları olabilir hataları bildirebilir ve öneride bulunabilirsiniz 😄
+          Selamlar ben Palamut Adam bu sitemiz yeni çıktı ve hataları olabilir hataları bildirebilir ve öneride
+          bulunabilirsiniz 😄
         </p>
       </div>
 
@@ -220,7 +221,9 @@
 
           <div class="form-group">
             <label for="contact-message">Mesajınız / Bildiriminiz</label>
-            <textarea id="contact-message" rows="4" placeholder="Sitemiz hakkındaki görüş, öneri veya karşılaştığınız hataları buraya yazabilirsiniz..." required></textarea>
+            <textarea id="contact-message" rows="4"
+              placeholder="Sitemiz hakkındaki görüş, öneri veya karşılaştığınız hataları buraya yazabilirsiniz..."
+              required></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary btn-submit-form">
@@ -271,11 +274,14 @@
             <span class="warning-icon">⚠️</span>
             <span class="dev-warning-text">!SİTEMİZ GELİŞTİRME AŞAMASINDADIR HATA VE EKSİKLERİ OLABİLİR!</span>
           </div>
-          
+
           <div class="footer-links-group">
             <span class="other-sites-label">Diğer Sitelerimiz:</span>
             <a href="https://linktr.ee/palamut" target="_blank" rel="noopener noreferrer" class="linktree-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.511 5.853l3.962-3.962 2.332 2.331-4.08 4.081 4.545 4.545-2.332 2.332-3.486-3.486v10.306h-3.3v-10.306l-3.486 3.486-2.332-2.332 4.545-4.545-4.08-4.081 2.332-2.331 3.962 3.962v-5.853h3.3v5.853z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M13.511 5.853l3.962-3.962 2.332 2.331-4.08 4.081 4.545 4.545-2.332 2.332-3.486-3.486v10.306h-3.3v-10.306l-3.486 3.486-2.332-2.332 4.545-4.545-4.08-4.081 2.332-2.331 3.962 3.962v-5.853h3.3v5.853z" />
+              </svg>
               https://linktr.ee/palamut
             </a>
           </div>
@@ -290,4 +296,5 @@
   <!-- Main JavaScript File -->
   <script src="app.js"></script>
 </body>
+
 </html>
