@@ -598,9 +598,6 @@ function createFlowerCardHTML(flower) {
     <div class="flower-card" data-id="${flower.id}">
       <div class="card-image-wrapper">
         <img src="${flower.image}" alt="${escapeHtml(flower.name)}" class="card-image" loading="lazy" onerror="this.src='images/red_rose.png'"/>
-        <span class="card-badge ${badgeClass}">
-          <span>${badgeIcon}</span> ${flower.rarityLabel}
-        </span>
         <button class="card-fav-btn ${flower.isFavorite ? 'active' : ''}" onclick="toggleFavorite('${flower.id}', event)" title="Favorilere Ekle">
           ${flower.isFavorite ? '❤️' : '🤍'}
         </button>
@@ -612,6 +609,11 @@ function createFlowerCardHTML(flower) {
           <span class="card-latin">${escapeHtml(flower.latinName)}</span>
         </div>
         <h2 class="card-title">${displayName}</h2>
+        <div class="card-rarity-row">
+          <span class="card-badge ${badgeClass}">
+            <span>${badgeIcon}</span> ${flower.rarityLabel}
+          </span>
+        </div>
         <p class="card-desc">${escapeHtml(flower.description)}</p>
 
         <div class="card-footer">

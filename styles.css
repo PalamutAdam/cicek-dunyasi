@@ -651,20 +651,21 @@ body {
   transform: scale(1.08);
 }
 
-/* Rarity Badge Overlay */
+/* Rarity Badge (Under Flower Title) */
+.card-rarity-row {
+  margin-bottom: 0.55rem;
+}
+
 .card-badge {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   padding: 0.35rem 0.85rem;
   border-radius: 20px;
   font-size: 0.78rem;
   font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
   backdrop-filter: blur(8px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
 
@@ -751,7 +752,7 @@ body {
   font-size: 1.35rem;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.35rem;
 }
 
 .card-title mark {
