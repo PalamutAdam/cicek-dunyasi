@@ -197,7 +197,7 @@ const flowersData = [
     watering: 'Dinlenme Dönemli Sulama',
     description: 'Yoğun kadife dokulu koyu siyah çiçekleri ve tatlı nane-baharat kokusuyla orkide tutkunlarının rüyası.',
     fullStory: 'Bitki dünyasında gerçek siyah pigment çok nadirdir. Fredclarkeara hibriti, koyu bordo ve mor tonlarının üst üste katmanlaşmasıyla gözün tamamen siyah algıladığı büyüleyici bir görsel şölen sunar.',
-    image: 'images/siyah_orkide.jpg',
+    image: 'images/siyah_orkide.png',
     isFavorite: false
   },
   {
